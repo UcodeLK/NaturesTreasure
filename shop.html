@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pure Oud Collection | Natures Wealth - Artisanal Oud Oil</title>
+  <meta name="description"
+    content="Browse 100% pure organic Oud oil distilled from sustainably harvested Agarwood trees cultivated using environmentally friendly Thailand drip technology.">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom CSS Design System -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="1.png" alt="Natures Wealth Logo">
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="agarwood.html" class="nav-link">Agarwood Trees</a></li>
+          <li><a href="shop.html" class="nav-link active">Pure Oud Collection</a></li>
+          <li><a href="calculator.html" class="nav-link">ROI Calculator</a></li>
+          <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-primary open-inquiry-modal" data-title="Oud Oil Inquiry">
+          <i class="fas fa-seedling"></i> Inquire Now
+        </button>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE HEADER HERO -->
+  <section class="hero" style="min-height: 45vh; padding-top: 140px; padding-bottom: 50px;">
+    <div class="container">
+      <div class="section-tag"><i class="fas fa-bottle-droplet"></i> Artisanal Distillery</div>
+      <h1 class="hero-title" style="font-size: 3.2rem;">100% Pure <span>Organic Oud Oil</span></h1>
+      <p class="hero-description" style="max-width: 700px;">
+        Extracted from sustainably grown Agarwood trees using organic steam distillation with zero chemical additives. Prices listed in Sri Lankan Rupees (LKR).
+      </p>
+    </div>
+  </section>
+
+  <!-- PRODUCTS COLLECTION SECTION -->
+  <section class="section" id="shop">
+    <div class="container">
+      <div class="shop-filters">
+        <button class="filter-btn active" data-filter="all">All Oud Varieties</button>
+        <button class="filter-btn" data-filter="single-estate">Single Estate Reserve</button>
+        <button class="filter-btn" data-filter="aged">Aged Vintage</button>
+        <button class="filter-btn" data-filter="attar">Pure Essence Attar</button>
+      </div>
+
+      <div class="products-grid">
+        <!-- Product 1 -->
+        <div class="product-card" data-category="single-estate">
+          <div class="product-thumb">
+            <span class="product-badge">Top Seller</span>
+            <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80"
+              alt="Royal Ceylon Oud Pure Essence">
+          </div>
+          <div class="product-details">
+            <span class="product-category">Single Estate Reserve</span>
+            <h3 class="product-title">Royal Ceylon Pure Oud Oil</h3>
+            <p class="product-desc">Distilled from 8-year mature Aquilaria trees grown via environmentally friendly Thailand drip irrigation. Deep woody profile with warm honey undertones.</p>
+            <div class="product-footer">
+              <div class="product-price">Rs. 115,000 <span>/ 3ml Tola</span></div>
+              <button class="btn btn-outline inquire-prod-btn" data-title="Royal Ceylon Pure Oud Oil"
+                data-price="Rs. 115,000 / 3ml">
+                Inquire
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card" data-category="aged">
+          <div class="product-thumb">
+            <span class="product-badge">Aged 12 Years</span>
+            <img src="https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?auto=format&fit=crop&w=800&q=80"
+              alt="Aged Cambodian Reserve Oud">
+          </div>
+          <div class="product-details">
+            <span class="product-category">Aged Vintage</span>
+            <h3 class="product-title">Cambodian Vintage Oud Reserve</h3>
+            <p class="product-desc">Extracted from dense resin heartwood and aged in glass carboys for 12 years. Complex smoky, rich leather notes with unmatched longevity.</p>
+            <div class="product-footer">
+              <div class="product-price">Rs. 165,000 <span>/ 3ml Tola</span></div>
+              <button class="btn btn-outline inquire-prod-btn" data-title="Cambodian Vintage Oud Reserve"
+                data-price="Rs. 165,000 / 3ml">
+                Inquire
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card" data-category="attar">
+          <div class="product-thumb">
+            <span class="product-badge">100% Organic</span>
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80"
+              alt="Wild Thai Organic Essence">
+          </div>
+          <div class="product-details">
+            <span class="product-category">Pure Essence Attar</span>
+            <h3 class="product-title">Thai Golden Mist Oud Attar</h3>
+            <p class="product-desc">Extracted using Thailand precision micro-mist nurtured heartwood. Bright, balsamic sweetness with a majestic amber finish.</p>
+            <div class="product-footer">
+              <div class="product-price">Rs. 88,000 <span>/ 3ml Tola</span></div>
+              <button class="btn btn-outline inquire-prod-btn" data-title="Thai Golden Mist Oud Attar"
+                data-price="Rs. 88,000 / 3ml">
+                Inquire
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card" data-category="single-estate">
+          <div class="product-thumb">
+            <span class="product-badge">Limited Edition</span>
+            <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=80"
+              alt="Wild Agarwood Resin Heartwood Extract">
+          </div>
+          <div class="product-details">
+            <span class="product-category">Single Estate Reserve</span>
+            <h3 class="product-title">Natures Wealth Signature Oud</h3>
+            <p class="product-desc">Our flagship distillation representing the pinnacle of eco-friendly Agarwood farming. Pure, velvety, and deeply aromatic.</p>
+            <div class="product-footer">
+              <div class="product-price">Rs. 185,000 <span>/ 3ml Tola</span></div>
+              <button class="btn btn-outline inquire-prod-btn" data-title="Natures Wealth Signature Oud"
+                data-price="Rs. 185,000 / 3ml">
+                Inquire
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card" data-category="attar">
+          <div class="product-thumb">
+            <span class="product-badge">Natural Distillate</span>
+            <img src="https://images.unsplash.com/photo-1527061011665-3652c757a4d4?auto=format&fit=crop&w=800&q=80"
+              alt="Artisanal Oud Steam Distillate">
+          </div>
+          <div class="product-details">
+            <span class="product-category">Pure Essence Attar</span>
+            <h3 class="product-title">Oud & Rose De Mai Essence</h3>
+            <p class="product-desc">Pure organic Oud oil co-distilled with handpicked May roses. Elegant floral warmth grounded by rich Agarwood resin.</p>
+            <div class="product-footer">
+              <div class="product-price">Rs. 95,000 <span>/ 3ml Tola</span></div>
+              <button class="btn btn-outline inquire-prod-btn" data-title="Oud & Rose De Mai Essence"
+                data-price="Rs. 95,000 / 3ml">
+                Inquire
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card" data-category="aged">
+          <div class="product-thumb">
+            <span class="product-badge">Artisanal Cask</span>
+            <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80"
+              alt="Imperial Dark Oud Extract">
+          </div>
+          <div class="product-details">
+            <span class="product-category">Aged Vintage</span>
+            <h3 class="product-title">Imperial Dark Agarwood Extract</h3>
+            <p class="product-desc">Ultra-dense dark resin extract aged in seasoned teakwood casks. Concentrated, hypnotic, and rich in natural Oud terpenes.</p>
+            <div class="product-footer">
+              <div class="product-price">Rs. 145,000 <span>/ 3ml Tola</span></div>
+              <button class="btn btn-outline inquire-prod-btn" data-title="Imperial Dark Agarwood Extract"
+                data-price="Rs. 145,000 / 3ml">
+                Inquire
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL INQUIRY WINDOW -->
+  <div class="modal" id="inquiryModal">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+      <h3 id="modalTitle" style="font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--primary-green-dark);">Pure Oud Inquiry</h3>
+      <p id="modalBodyText" style="margin-bottom: 1.75rem; font-size: 0.95rem;">Connect with our distillery team to order pure Oud oil.</p>
+
+      <form id="modalForm">
+        <div class="form-group">
+          <label class="form-label" for="m_name">Your Name</label>
+          <input type="text" id="m_name" class="form-control" placeholder="Your Name" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="m_email">Email / Phone</label>
+          <input type="text" id="m_email" class="form-control" placeholder="Email or Phone Number" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="m_notes">Notes / Desired Quantity</label>
+          <textarea id="m_notes" class="form-control" placeholder="Specify quantity in 3ml Tola or bottle size..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-gold" style="width: 100%;">
+          Submit Inquiry via WhatsApp <i class="fas fa-check"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
+            <img src="1.png" alt="Natures Wealth Logo" style="height: 56px;">
+            <span style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: #FFFFFF;">Natures Wealth</span>
+          </div>
+          <p>
+            Natures Wealth is a pioneer in eco-sustainable Agarwood tree management and 100% pure organic Oud oil distillation utilizing Thailand environmentally friendly drip irrigation.
+          </p>
+          <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+            <a href="https://wa.me/94760595115" target="_blank" style="color: var(--accent-gold-light); font-size: 1.4rem;"><i class="fab fa-whatsapp"></i></a>
+            <a href="tel:+94770788806" style="color: var(--accent-gold-light); font-size: 1.3rem;"><i class="fas fa-phone"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Quick Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="agarwood.html">Agarwood Trees</a></li>
+            <li><a href="shop.html">Pure Oud Collection</a></li>
+            <li><a href="calculator.html">ROI Calculator (LKR)</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Direct Contacts</h4>
+          <ul class="footer-links">
+            <li><a href="tel:+94770788806">Direct Desk: +94 77 078 8806</a></li>
+            <li><a href="https://wa.me/94760595115" target="_blank">WhatsApp: +94 76 059 5115</a></li>
+            <li><a href="contact.html">Plantation Visit Booking</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Eco Commitment</h4>
+          <p style="font-size: 0.88rem; color: rgba(244,239,230,0.7); margin-bottom: 1rem;">
+            Every tree planted and nurtured via our Thailand drip irrigation system contributes directly to reforestation and carbon capture.
+          </p>
+          <div style="display: inline-block; background: rgba(201,150,72,0.15); padding: 0.6rem 1rem; border-radius: var(--radius-sm); color: var(--accent-gold-light); font-size: 0.82rem; font-weight: 600;">
+            <i class="fas fa-seedling"></i> 100% Environmentally Friendly
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Natures Wealth - Pure By Nature. All Rights Reserved.</div>
+        <div>Designed with Sustainability & Precision</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
