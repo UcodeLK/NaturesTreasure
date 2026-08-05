@@ -378,6 +378,9 @@ function initJourneyRoadmap() {
 
     window.addEventListener('scroll', updatePathOnScroll, { passive: true });
     updatePathOnScroll();
+    // Recalculate on resize or orientation change to keep progress accurate on mobile
+    window.addEventListener('resize', updatePathOnScroll, { passive: true });
+    window.addEventListener('orientationchange', updatePathOnScroll, { passive: true });
   }
 
   // Scroll reveal observer for editorial stages & final product destination

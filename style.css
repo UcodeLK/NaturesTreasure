@@ -89,6 +89,47 @@ img {
   display: block;
 }
 
+/* Fluid typography using clamp() — preserves desktop max sizes */
+.hero-title {
+  font-size: clamp(2.2rem, 8vw, 3.8rem);
+}
+
+.section-title {
+  font-size: clamp(1.5rem, 3.2vw, 2.75rem);
+}
+
+.section-subtitle {
+  font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+}
+
+.hero-description {
+  font-size: clamp(0.95rem, 3.5vw, 1.2rem);
+}
+
+.about-hero-copy h1 {
+  font-size: clamp(1.8rem, 5.5vw, 3.2rem);
+}
+
+.about-content h2 {
+  font-size: clamp(1.4rem, 4.5vw, 2.6rem);
+}
+
+.about-cta h2 {
+  font-size: clamp(1.25rem, 4vw, 2.2rem);
+}
+
+.main-result-val {
+  font-size: clamp(1.8rem, 6vw, 3rem);
+}
+
+.product-title {
+  font-size: clamp(1rem, 3.5vw, 1.35rem);
+}
+
+.footer-title {
+  font-size: clamp(1rem, 3vw, 1.15rem);
+}
+
 /* Container */
 .container {
   max-width: 1280px;
@@ -1598,6 +1639,216 @@ textarea.form-control {
   margin-bottom: 5rem;
 }
 
+/* Additional small-screen responsive tweaks (mobile only) */
+@media (max-width: 540px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .navbar {
+    padding: 0.6rem 0;
+  }
+
+  .brand-logo img {
+    height: 48px;
+    max-height: 48px;
+  }
+
+  .hero {
+    padding-top: 90px;
+    padding-bottom: 50px;
+    min-height: auto;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: clamp(1.8rem, 6.5vw, 2.6rem);
+    line-height: 1.15;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  .hero-image-wrapper img {
+    height: 320px;
+    object-fit: cover;
+  }
+
+  .hero-floating-glass {
+    position: static;
+    display: block;
+    margin-top: 1rem;
+    bottom: auto;
+    left: auto;
+    max-width: 100%;
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn {
+    padding: 0.6rem 1rem;
+    min-height: 44px;
+    font-size: 0.95rem;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-thumb {
+    height: 220px;
+  }
+
+  .about-hero-card img,
+  .hero-image-wrapper img,
+  .tech-image-wrapper img,
+  .product-thumb img {
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+    object-fit: cover;
+  }
+
+  /* Responsive SVG stroke: smaller on phones, medium on tablets, desktop unchanged */
+  .roadmap-svg-path path {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: var(--accent-gold);
+    stroke-opacity: 0.95;
+  }
+
+  /* Very small phones */
+  @media (max-width: 420px) {
+    .roadmap-svg-path path {
+      stroke-width: clamp(0.6px, 3.5vw, 0.95px) !important;
+    }
+  }
+
+  /* Small phones */
+  @media (min-width: 421px) and (max-width: 540px) {
+    .roadmap-svg-path path {
+      stroke-width: clamp(0.8px, 2.2vw, 1.2px) !important;
+    }
+  }
+
+  /* Tablets */
+  @media (min-width: 541px) and (max-width: 1024px) {
+    .roadmap-svg-path path {
+      stroke-width: clamp(1px, 1.1vw, 1.6px) !important;
+    }
+  }
+
+  /* Calculator mobile fixes: reduce paddings and ensure children fit */
+  .calculator-box {
+    padding: 1.5rem;
+    gap: 1.25rem;
+  }
+
+  .calc-inputs {
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .calc-results {
+    padding: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .main-result {
+    padding: 1rem;
+  }
+
+  .main-result-val {
+    word-break: break-word;
+    font-size: clamp(1.6rem, 6vw, 2.6rem);
+  }
+
+  /* Ensure product/shop prices wrap and scale on small screens */
+  .product-price {
+    white-space: normal;
+    font-size: clamp(1rem, 4vw, 1.35rem);
+    line-height: 1.05;
+    word-break: break-word;
+  }
+
+  .modal-card {
+    max-width: 100%;
+    padding: 1.5rem;
+    margin: 0 0.5rem;
+  }
+
+  .footer {
+    padding: 3rem 0 1.5rem 0;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-title {
+    font-size: clamp(1.6rem, 7.5vw, 2.2rem);
+  }
+
+  .hero-image-wrapper img {
+    height: 260px;
+  }
+
+  .brand-logo img {
+    height: 44px;
+  }
+
+  .nav-container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .btn {
+    padding-left: 0.6rem;
+    padding-right: 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 360px) {
+  html { font-size: 15px; }
+
+  .hero-image-wrapper img {
+    height: 220px;
+  }
+
+  .hero-description {
+    font-size: 0.95rem;
+  }
+
+  .container { padding-left: 0.75rem; padding-right: 0.75rem; }
+}
+
+/* Ensure any table becomes horizontally scrollable on very small screens */
+.table-responsive table { width: 100%; border-collapse: collapse; }
+
+
 /* ==========================================================================
    JOURNEY OF AGARWOOD - EDITORIAL ROADMAP DESIGN SYSTEM
    ========================================================================== */
@@ -1910,7 +2161,24 @@ textarea.form-control {
   }
 
   .roadmap-svg-path {
-    display: none;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+    transform-origin: center top;
+    z-index: 0;
+    pointer-events: none;
+    overflow: visible;
+  }
+
+  /* Make stroke responsive across small phones -> tablets using clamp */
+  .roadmap-svg-path path {
+    stroke: var(--accent-gold);
+    stroke-opacity: 0.95;
+    stroke-width: clamp(0.6px, 1.3vw, 1.6px) !important;
   }
 
   .editorial-title {
