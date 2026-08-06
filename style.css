@@ -1824,6 +1824,124 @@ textarea.form-control {
     line-height: 1.4;
   }
 
+  .hero .hero-content,
+  .hero .hero-content.animate-in,
+  .hero .hero-image-wrapper,
+  .hero .hero-image-wrapper.animate-in,
+  .highlight-box,
+  .highlight-box.animate-in {
+    transform: none !important;
+  }
+
+  .hero-content,
+  .hero-card-preview,
+  .highlight-box {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .hero-grid {
+    justify-items: center;
+  }
+
+  .highlight-box {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-description {
+    max-width: 100% !important;
+    width: 100%;
+  }
+
+  .tech-container {
+    padding: 2rem 1rem !important;
+  }
+
+  .tech-grid {
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    gap: 1.5rem !important;
+  }
+
+  .tech-content,
+  .tech-image-wrapper,
+  .tech-feature-item,
+  .tech-feature-info,
+  .section-tag,
+  .tech-content h2,
+  .tech-content p {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .tech-content h2 {
+    font-size: clamp(1.8rem, 7vw, 2.4rem) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1rem !important;
+    word-break: break-word !important;
+  }
+
+  .tech-content p {
+    font-size: clamp(0.9rem, 3.5vw, 1rem) !important;
+    line-height: 1.6 !important;
+  }
+
+  .tech-image-wrapper img {
+    height: auto !important;
+    min-height: 220px !important;
+  }
+
+  .tech-badge-overlay {
+    right: auto !important;
+    left: 1rem !important;
+  }
+
+  .highlight-box .highlight-icon {
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-content,
+  .hero-image-wrapper,
+  .highlight-box,
+  .hero-floating-glass {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+  }
+
+  .highlight-box {
+    transform: none !important;
+  }
+
+  .hero-floating-glass {
+    left: 0;
+    right: 0;
+    transform: none !important;
+    margin-top: 1rem;
+    max-width: calc(100% - 1rem);
+  }
+
+  .about-img-secondary {
+    position: static;
+    bottom: auto;
+    right: auto;
+    width: 100%;
+    max-width: 100%;
+    margin: 1.5rem auto 0;
+    transform: none !important;
+  }
+
+  .final-glow-ring {
+    width: min(320px, 84vw);
+    height: min(260px, 65vw);
+    top: 3%;
+    left: 50%;
+    transform: translateX(-50%) !important;
+  }
+
   .products-grid {
     grid-template-columns: 1fr;
   }
@@ -1981,6 +2099,21 @@ textarea.form-control {
     padding-left: 0.6rem;
     padding-right: 0.8rem;
     font-size: 0.9rem;
+  }
+
+  .final-glow-ring {
+    width: min(280px, 78vw) !important;
+    height: min(220px, 58vw) !important;
+    top: 3% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    animation: none !important;
+  }
+
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
   }
 }
 
