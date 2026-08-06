@@ -1716,22 +1716,30 @@ textarea.form-control {
     max-width: 100%;
   }
 
+  .hero-content,
+  .hero-card-preview,
+  .highlight-box,
+  .highlight-content {
+    min-width: 0;
+  }
+
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
 
   .hero-title {
-    font-size: clamp(1.8rem, 6.5vw, 2.6rem);
-    line-height: 1.15;
+    font-size: clamp(1.6rem, 7vw, 2.4rem);
+    line-height: 1.2;
   }
 
   .hero-description {
-    font-size: 1rem;
+    font-size: clamp(0.95rem, 3.8vw, 1rem);
     max-width: 100%;
   }
 
   .hero-image-wrapper img {
+    width: 100%;
     height: 320px;
     object-fit: cover;
   }
@@ -1750,6 +1758,60 @@ textarea.form-control {
     padding: 0.6rem 1rem;
     min-height: 44px;
     font-size: 0.95rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .hero-stats {
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .hero-stats .stat-item {
+    flex: 1 1 calc(50% - 0.75rem);
+    min-width: 155px;
+    text-align: center;
+  }
+
+  .hero-stats .stat-item h3 {
+    font-size: 1.8rem;
+    margin-left: 0;
+  }
+
+  .hero-stats .stat-item p {
+    font-size: 0.82rem;
+    letter-spacing: 0.8px;
+  }
+
+  .highlights-bar {
+    padding: 2rem 0;
+  }
+
+  .highlights-grid {
+    gap: 1rem;
+  }
+
+  .highlight-box {
+    padding: 1rem;
+    background: rgba(255,255,255,0.04);
+    border-radius: var(--radius-md);
+  }
+
+  .highlight-content h4 {
+    font-size: 1rem;
+  }
+
+  .highlight-content p {
+    font-size: 0.85rem;
+    line-height: 1.4;
   }
 
   .products-grid {
@@ -1859,11 +1921,36 @@ textarea.form-control {
 
 @media (max-width: 420px) {
   .hero-title {
-    font-size: clamp(1.6rem, 7.5vw, 2.2rem);
+    font-size: clamp(1.5rem, 8vw, 2rem);
+    line-height: 1.2;
+    word-break: break-word;
+  }
+
+  .hero-description {
+    font-size: 0.92rem;
   }
 
   .hero-image-wrapper img {
     height: 260px;
+  }
+
+  .highlight-content h4 {
+    font-size: 0.98rem;
+  }
+
+  .highlight-content p {
+    font-size: 0.82rem;
+  }
+
+  .highlight-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn {
+    padding-left: 0.6rem;
+    padding-right: 0.8rem;
+    font-size: 0.9rem;
   }
 
   .brand-logo img {
