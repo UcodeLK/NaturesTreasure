@@ -1728,6 +1728,16 @@ textarea.form-control {
     gap: 1.5rem;
   }
 
+  .hero .hero-content,
+  .hero .hero-image-wrapper,
+  .highlight-box,
+  .highlights-grid .highlight-box:nth-child(1),
+  .highlights-grid .highlight-box:nth-child(2),
+  .highlights-grid .highlight-box:nth-child(3),
+  .highlights-grid .highlight-box:nth-child(4) {
+    transform: translateY(18px) !important;
+  }
+
   .hero-title {
     font-size: clamp(1.6rem, 7vw, 2.4rem);
     line-height: 1.2;
