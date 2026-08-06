@@ -273,8 +273,8 @@ img {
 }
 
 .brand-logo img {
-  height: 64px;
-  max-height: 64px;
+  height: clamp(64px, 4vw, 88px);
+  max-height: 88px;
   width: auto;
   object-fit: contain;
   display: block;
@@ -1696,8 +1696,8 @@ textarea.form-control {
   }
 
   .brand-logo img {
-    height: clamp(52px, 7vw, 64px);
-    max-height: 64px;
+    height: clamp(64px, 8vw, 80px);
+    max-height: 80px;
   }
 
   .hero {
@@ -2087,8 +2087,8 @@ textarea.form-control {
   }
 
   .brand-logo img {
-    height: clamp(48px, 9vw, 56px);
-    max-height: 56px;
+    height: clamp(60px, 10vw, 72px);
+    max-height: 72px;
   }
 
   .nav-container {
