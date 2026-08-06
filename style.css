@@ -531,6 +531,24 @@ img {
   display: flex;
   align-items: flex-start;
   gap: 1.25rem;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.85s ease, transform 0.85s ease;
+}
+
+.highlights-grid .highlight-box:nth-child(1),
+.highlights-grid .highlight-box:nth-child(4) {
+  transform: translateX(-28px) translateY(18px);
+}
+
+.highlights-grid .highlight-box:nth-child(2),
+.highlights-grid .highlight-box:nth-child(3) {
+  transform: translateX(28px) translateY(18px);
+}
+
+.highlight-box.animate-in {
+  opacity: 1;
+  transform: none;
 }
 
 .highlight-icon {
@@ -604,7 +622,7 @@ img {
   object-fit: cover;
 }
 
-..about-hero-copy,
+.about-hero-copy,
 .about-hero-card,
 .hero-content,
 .hero-image-wrapper,
@@ -619,37 +637,64 @@ img {
   transition: opacity 0.85s ease, transform 0.85s ease;
 }
 
-.about-hero-copy.animate-in,
-.about-hero-card.animate-in,
-.hero-content.animate-in,
-.hero-image-wrapper.animate-in,
-.story-card.animate-in,
-.message-card.animate-in,
-.vision-card.animate-in,
-.about-cta.animate-in,
-.hero-stats .stat-item.animate-in,
-.highlight-box.animate-in {
-  opacity: 1;
-  transform: translateY(0);
-}
+  .hero .hero-content {
+    opacity: 0;
+    transform: translateX(-26px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
 
-.hero-image-wrapper.animate-in,
-.about-hero-card.animate-in,
-.story-card.animate-in,
-.message-card.animate-in,
-.vision-card.animate-in {
-  animation: floatIn 0.9s ease forwards;
-}
+  .hero .hero-image-wrapper {
+    opacity: 0;
+    transform: translateX(26px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
 
-.hero-stats .stat-item {
-  padding: 1rem 0;
-  background: transparent;
-  border-radius: 0;
-  transition: opacity 0.85s ease, transform 0.85s ease;
+  .about-hero-copy.animate-in,
+  .about-hero-card.animate-in,
+  .hero-content.animate-in,
+  .hero-image-wrapper.animate-in,
+  .story-card.animate-in,
+  .message-card.animate-in,
+  .vision-card.animate-in,
+  .about-cta.animate-in,
+  .hero-stats .stat-item.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .highlight-box.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+    animation: highlight-pop 0.8s ease both;
+  }
+
+  .hero .hero-content.animate-in,
+  .hero .hero-image-wrapper.animate-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero .hero-image-wrapper.animate-in {
+    animation: none;
 }
 
 .hero-stats .stat-item.animate-in {
   animation: popIn 0.7s ease forwards;
+}
+
+@keyframes highlight-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-6px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .story-card.animate-in,
@@ -1651,14 +1696,24 @@ textarea.form-control {
   }
 
   .brand-logo img {
-    height: 48px;
-    max-height: 48px;
+    height: clamp(52px, 7vw, 64px);
+    max-height: 64px;
   }
 
   .hero {
     padding-top: 90px;
     padding-bottom: 50px;
     min-height: auto;
+  }
+
+  .hero-card-preview {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .hero-card-preview .hero-image-wrapper {
+    width: 100%;
+    max-width: 100%;
   }
 
   .hero-grid {
@@ -1812,7 +1867,8 @@ textarea.form-control {
   }
 
   .brand-logo img {
-    height: 44px;
+    height: clamp(48px, 9vw, 56px);
+    max-height: 56px;
   }
 
   .nav-container {
@@ -1860,6 +1916,15 @@ textarea.form-control {
   padding: 9rem 0 10rem;
   overflow: hidden;
   font-family: 'Poppins', sans-serif;
+}
+
+/* Prevent collapsed margins or inline SVG gaps that can show a thin white line */
+.editorial-journey-section {
+  overflow: auto;
+}
+
+.roadmap-svg-path {
+  display: block;
 }
 
 .editorial-container {
@@ -2174,6 +2239,18 @@ textarea.form-control {
     overflow: visible;
   }
 
+  /* Prevent horizontal page overflow caused by absolute SVG or wide content */
+  .editorial-journey-section,
+  .editorial-roadmap-wrapper {
+    overflow-x: hidden;
+  }
+
+  /* Extra safety: limit page horizontal overflow on narrow screens */
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
   /* Make stroke responsive across small phones -> tablets using clamp */
   .roadmap-svg-path path {
     stroke: var(--accent-gold);
@@ -2189,3 +2266,40 @@ textarea.form-control {
     font-size: 2.2rem;
   }
 }
+
+/* ==========================================================================
+   SITE-WIDE MOTION SYSTEM (Appended)
+   Lightweight, premium reveals. Uses opacity + transform + will-change.
+   JS will add `motion-*` and `motion-hidden` classes; it will add `animate-in` when visible.
+   ========================================================================== */
+
+.motion-hidden { opacity: 0; will-change: opacity, transform; }
+
+.motion-fade-up.motion-hidden { transform: translateY(18px); }
+.motion-slide-left.motion-hidden { transform: translateX(-22px); }
+.motion-slide-right.motion-hidden { transform: translateX(22px); }
+.motion-scale.motion-hidden { transform: scale(0.96); }
+.motion-pop.motion-hidden { transform: scale(0.96); opacity: 0; }
+
+.motion-fade-up,
+.motion-slide-left,
+.motion-slide-right,
+.motion-scale,
+.motion-pop {
+  transition-property: opacity, transform;
+  transition-duration: 680ms;
+  transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+  opacity: 1;
+}
+
+.animate-in { opacity: 1 !important; transform: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-fade-up,
+  .motion-slide-left,
+  .motion-slide-right,
+  .motion-scale,
+  .motion-pop { transition: none !important; transform: none !important; opacity: 1 !important; }
+}
+
+/* End of motion system */
