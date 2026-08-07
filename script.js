@@ -11,9 +11,144 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initSmoothScroll();
   initRevealAnimations();
+  initSiteAnimations();
   initStatCounters();
   initJourneyRoadmap();
 });
+
+/* Site-wide reveal animations using IntersectionObserver
+   - Does NOT touch or modify the editorial/journey roadmap section
+   - Applies subtle motion classes and staggers groups when appropriate
+*/
+function initSiteAnimations() {
+  if (!('IntersectionObserver' in window)) return;
+
+  const animatedGroups = new Set();
+
+  // Candidate selectors to animate (avoid broad 'section' to prevent conflict
+  // with existing hero/reveal logic; exclude anything inside .hero)
+  const selectors = [
+    '.process-card',
+    '.product-card',
+    '.metric-card',
+    '.tech-feature-item',
+    '.feathered-image-wrap',
+    '.about-hero-copy',
+    '.about-hero-card',
+    '.message-card',
+    '.vision-card',
+    '.final-product-image',
+    '.contact-form-container',
+    '.contact-info-box',
+    '.footer'
+  ];
+
+  const heroExclusionClasses = [
+    'hero-image-wrapper',
+    'hero-card-preview',
+    'hero-content',
+    'hero-badge',
+    'hero-actions',
+    'hero-stats',
+    'hero-floating-glass',
+    'hero-title',
+    'hero-description'
+  ];
+
+  const candidates = Array.from(document.querySelectorAll(selectors.join(','))).filter(el => {
+    // Skip anything inside the editorial roadmap section
+    if (el.closest('#journeyRoadmapSection') || el.closest('.editorial-journey-section')) return false;
+    // Skip hero section and hero preview/card elements to avoid conflicting reveal styles
+    if (el.matches('.hero, .hero *')) return false;
+    if (heroExclusionClasses.some(cls => el.classList.contains(cls))) return false;
+    // Skip elements that already have reveal classes applied
+    if (el.classList.contains('animate-in') || el.classList.contains('reveal')) return false;
+    return true;
+  });
+
+  // Group candidates by their parent container to enable staggered reveals
+  const groups = new Map();
+  candidates.forEach(el => {
+    const parent = el.parentElement || document.body;
+    const key = parent; // use DOM node as key
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(el);
+  });
+
+  // Apply initial motion classes based on layout heuristics
+  function chooseVariant(el) {
+    // force-up for cards
+    if (el.classList.contains('process-card') || el.classList.contains('product-card') || el.classList.contains('metric-card') || el.classList.contains('tech-feature-item')) return 'motion-fade-up';
+    if (el.classList.contains('hero-image-wrapper') || el.classList.contains('final-product-image') || el.classList.contains('feathered-image-wrap')) return 'motion-scale';
+    if (el.classList.contains('contact-form-container') || el.classList.contains('contact-info-box')) return 'motion-fade-up';
+
+    // Determine center vs side
+    const container = el.parentElement || document.body;
+    try {
+      const cRect = container.getBoundingClientRect();
+      const eRect = el.getBoundingClientRect();
+      const eCenter = eRect.left + eRect.width / 2;
+      const cCenter = cRect.left + cRect.width / 2;
+      const rel = (eCenter - cCenter) / cRect.width;
+      if (Math.abs(rel) < 0.15) return 'motion-fade-up';
+      return rel < 0 ? 'motion-slide-left' : 'motion-slide-right';
+    } catch (err) {
+      return 'motion-fade-up';
+    }
+  }
+
+  // Initialize classes and data-group
+  let groupId = 0;
+  groups.forEach((els, parent) => {
+    const id = `mg-${groupId++}`;
+    els.forEach((el, idx) => {
+      el.dataset.motionGroup = id;
+      const variant = chooseVariant(el);
+      el.classList.add(variant, 'motion-hidden', 'motion-item');
+      // set a small base delay for visual hierarchy (headlines before body will be handled elsewhere)
+      const baseDelay = 0.06 * idx; // 60ms per item
+      el.style.transitionDelay = `${baseDelay}s`;
+    });
+  });
+
+  const io = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const gid = el.dataset.motionGroup;
+      if (!gid) {
+        el.classList.remove('motion-hidden');
+        el.classList.add('animate-in');
+        observer.unobserve(el);
+        return;
+      }
+
+      // If group already animated, just reveal this element without stagger
+      if (animatedGroups.has(gid)) {
+        el.classList.remove('motion-hidden');
+        el.classList.add('animate-in');
+        observer.unobserve(el);
+        return;
+      }
+
+      // Animate the whole group with stagger
+      const groupEls = Array.from(document.querySelectorAll(`[data-motion-group="${gid}"]`));
+      groupEls.forEach((gEl, i) => {
+        // small stagger: 90ms
+        gEl.style.transitionDelay = `${i * 0.09}s`;
+        setTimeout(() => {
+          gEl.classList.remove('motion-hidden');
+          gEl.classList.add('animate-in');
+        }, i * 90);
+        observer.unobserve(gEl);
+      });
+      animatedGroups.add(gid);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+  // Observe all candidates
+  candidates.forEach(el => io.observe(el));
+}
 
 function initStatCounters() {
   const counters = document.querySelectorAll('.stat-value');
@@ -76,11 +211,15 @@ function initRevealAnimations() {
 
   revealTargets.forEach(el => observer.observe(el));
 
-  // Fallback for elements that may not intersect due to scroll position or layout shifts
+  // Fallback for elements already in the visible viewport on page load
   window.requestAnimationFrame(() => {
     revealTargets.forEach((el, index) => {
       if (!el.classList.contains('animate-in')) {
-        revealElement(el, 120 + index * 60);
+        const rect = el.getBoundingClientRect();
+        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+        if (isInView) {
+          revealElement(el, 120 + index * 60);
+        }
       }
     });
   });
@@ -378,6 +517,9 @@ function initJourneyRoadmap() {
 
     window.addEventListener('scroll', updatePathOnScroll, { passive: true });
     updatePathOnScroll();
+    // Recalculate on resize or orientation change to keep progress accurate on mobile
+    window.addEventListener('resize', updatePathOnScroll, { passive: true });
+    window.addEventListener('orientationchange', updatePathOnScroll, { passive: true });
   }
 
   // Scroll reveal observer for editorial stages & final product destination
