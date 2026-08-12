@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sales Analytics | Admin Portal | Natures Wealth</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <img src="../1.png" alt="Logo">
+        <span>Admin Portal</span>
+      </div>
+      
+      <ul class="admin-nav">
+        <li><a href="dashboard.html"><i class="fas fa-chart-pie"></i> Dashboard</a></li>
+        <li><a href="sales.html" class="active"><i class="fas fa-chart-bar"></i> Sales Analytics</a></li>
+        <li><a href="tree-growth.html"><i class="fas fa-tree"></i> Tree Growth</a></li>
+      </ul>
+
+      <ul class="admin-nav" style="flex: none;">
+        <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <div class="admin-header">
+        <h1 class="admin-title">Sales Analytics</h1>
+      </div>
+
+      <!-- Comparison controls -->
+      <div class="admin-toolbar" style="background:var(--cream-surface); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+        <div style="display:flex; align-items:center; gap:1rem;">
+          <strong style="color:var(--primary-green-dark);">Compare Months:</strong>
+          <input type="month" id="month1" class="form-control admin-filter" style="width: auto;">
+          <span>VS</span>
+          <input type="month" id="month2" class="form-control admin-filter" style="width: auto;">
+          <button id="compareBtn" class="btn btn-primary">Compare</button>
+        </div>
+      </div>
+
+      <!-- Stats comparison -->
+      <div class="stats-grid" id="comparisonStats" style="display:none; margin-top: 2rem;">
+        <div class="stat-card">
+          <div class="stat-title">Revenue Comparison</div>
+          <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+            <div>
+              <div style="font-size: 0.8rem; color:var(--text-muted);" id="lblMonth1">Month 1</div>
+              <div class="stat-value" style="font-size: 1.5rem;" id="valRev1">-</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size: 0.8rem; color:var(--text-muted);" id="lblMonth2">Month 2</div>
+              <div class="stat-value" style="font-size: 1.5rem; color:var(--accent-gold);" id="valRev2">-</div>
+            </div>
+          </div>
+          <div id="revDiff" style="margin-top:1rem; font-size:0.9rem; font-weight:600;"></div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-title">Orders Comparison</div>
+          <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+            <div>
+              <div style="font-size: 0.8rem; color:var(--text-muted);" id="lblOrdMonth1">Month 1</div>
+              <div class="stat-value" style="font-size: 1.5rem;" id="valOrd1">-</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size: 0.8rem; color:var(--text-muted);" id="lblOrdMonth2">Month 2</div>
+              <div class="stat-value" style="font-size: 1.5rem; color:var(--accent-gold);" id="valOrd2">-</div>
+            </div>
+          </div>
+          <div id="ordDiff" style="margin-top:1rem; font-size:0.9rem; font-weight:600;"></div>
+        </div>
+      </div>
+
+      <!-- Charts -->
+      <div class="chart-section" style="grid-template-columns: 1fr;">
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <h2 class="chart-card-title"><i class="fas fa-chart-line"></i> Year-Over-Year / Month-by-Month Trend</h2>
+          </div>
+          <div class="chart-container" style="height: 400px;">
+            <canvas id="salesComparisonChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="../js/supabase-config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/sales.js"></script>
+</body>
+</html>

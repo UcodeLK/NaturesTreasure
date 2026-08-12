@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login | Natures Wealth</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <img src="../1.png" alt="Natures Wealth" class="auth-logo">
+      <h2 class="auth-title">Admin Portal</h2>
+      
+      <form id="loginForm">
+        <div class="form-group">
+          <label class="form-label" for="email">Email Address</label>
+          <input type="email" id="email" class="form-control" required placeholder="admin@naturestreasurelk.com">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <input type="password" id="password" class="form-control" required placeholder="••••••••">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Sign In</button>
+        <div id="authError" class="auth-error"></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/supabase-config.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

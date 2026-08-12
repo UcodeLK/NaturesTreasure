@@ -1,0 +1,612 @@
+/* ==========================================================================
+   Tracking Pages — Natures Wealth
+   Fonts: Playfair Display (headings), Poppins (body) — matching site
+   ========================================================================== */
+
+/* ==========================================================================
+   HERO SEARCH PAGE (track-order.html)
+   ========================================================================== */
+
+.tracking-hero-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, #273827 0%, #3F523E 50%, #1a2a1a 100%);
+}
+
+.tracking-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1920&q=60') center/cover no-repeat;
+  opacity: 0.08;
+}
+
+.tracking-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 6rem 2rem;
+}
+
+.tracking-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(201, 150, 72, 0.15);
+  border: 1px solid rgba(201, 150, 72, 0.3);
+  color: #E0BA7A;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0.5rem 1.25rem;
+  border-radius: 99px;
+  margin-bottom: 2rem;
+}
+
+.tracking-hero-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  color: #FFFFFF;
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+  font-weight: 700;
+}
+
+.tracking-hero-title span {
+  color: var(--accent-gold, #C99648);
+  font-style: italic;
+}
+
+.tracking-hero-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 3rem;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 300;
+}
+
+.tracking-search-card {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  padding: 2.5rem;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.tracking-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tracking-input-wrap {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.tracking-input-icon {
+  position: absolute;
+  left: 1.1rem;
+  color: rgba(255,255,255,0.4);
+  font-size: 1rem;
+}
+
+.tracking-input {
+  width: 100%;
+  padding: 1rem 1rem 1rem 2.75rem;
+  background: rgba(255,255,255,0.08);
+  border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.tracking-input::placeholder { color: rgba(255,255,255,0.35); }
+.tracking-input:focus {
+  outline: none;
+  border-color: var(--accent-gold, #C99648);
+  background: rgba(255,255,255,0.12);
+  box-shadow: 0 0 0 4px rgba(201,150,72,0.15);
+}
+
+.tracking-btn {
+  padding: 0 2rem;
+  border-radius: 12px;
+  white-space: nowrap;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.tracking-message {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  min-height: 1.2rem;
+  color: #ff8a8a;
+}
+
+.tracking-hint {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.3);
+  margin-top: 0.75rem;
+}
+.tracking-hint a {
+  color: rgba(201,150,72,0.7);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.tracking-hint a:hover { color: var(--accent-gold, #C99648); }
+
+
+/* ==========================================================================
+   BEAUTIFUL LOADING STATE (track-result.html)
+   ========================================================================== */
+
+.tracking-loading-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 4rem 2rem;
+  transition: opacity 0.4s ease;
+}
+
+.tracking-loading-page.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tracking-loading-card {
+  text-align: center;
+  max-width: 380px;
+}
+
+/* Pulsing ring + leaf icon */
+.loading-pulse-ring {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 0 auto 2rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-pulse-ring::before,
+.loading-pulse-ring::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--accent-gold, #C99648);
+  animation: pulseRing 2s ease-out infinite;
+}
+
+.loading-pulse-ring::after {
+  animation-delay: 0.6s;
+}
+
+@keyframes pulseRing {
+  0% { transform: scale(0.8); opacity: 0.7; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.loading-icon-inner {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-green, #3F523E), var(--primary-green-dark, #273827));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--accent-gold, #C99648);
+  animation: gentleSpin 3s linear infinite;
+  box-shadow: 0 8px 32px rgba(39,56,39,0.25);
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes gentleSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--primary-green-dark, #273827);
+  margin-bottom: 0.5rem;
+}
+
+.loading-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 400;
+  color: var(--text-muted, #8B9A8B);
+  margin-bottom: 2rem;
+}
+
+/* Animated loading bar */
+.loading-bar-track {
+  width: 200px;
+  height: 4px;
+  background: rgba(110,73,53,0.1);
+  border-radius: 4px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  width: 40%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--accent-gold, #C99648), var(--primary-green, #3F523E));
+  animation: loadBar 1.2s ease-in-out infinite;
+}
+
+@keyframes loadBar {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(370%); }
+}
+
+
+/* ==========================================================================
+   RESULT PAGE LAYOUT (track-result.html)
+   ========================================================================== */
+
+.result-header-strip {
+  background: var(--primary-green-dark, #273827);
+  color: #fff;
+  padding: 1.25rem 0;
+}
+
+.result-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.result-back-btn {
+  border-color: rgba(255,255,255,0.3);
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.result-back-btn:hover {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+.result-header-loading {
+  font-family: 'Poppins', sans-serif;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.95rem;
+}
+
+.result-header-invoice {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.2rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.result-header-invoice .invoice-badge {
+  background: rgba(201,150,72,0.2);
+  border: 1px solid rgba(201,150,72,0.4);
+  padding: 0.3rem 0.75rem;
+  border-radius: 99px;
+  font-size: 0.85rem;
+  color: #E0BA7A;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Fade-in for results */
+.fade-in {
+  animation: fadeSlideIn 0.5s ease forwards;
+}
+
+@keyframes fadeSlideIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.result-body {
+  padding: 2.5rem 2rem 5rem;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.result-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.result-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ==========================================================================
+   TRACKING CARDS
+   ========================================================================== */
+
+.tracking-card {
+  background: var(--cream-surface, #FAF6F0);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(39,56,39,0.06);
+  border: 1px solid rgba(110,73,53,0.08);
+  animation: floatIn 0.5s ease forwards;
+}
+
+@keyframes floatIn {
+  0% { opacity: 0; transform: translateY(15px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.tracking-card-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.4rem;
+  color: var(--primary-green-dark, #273827);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  border-bottom: 2px solid rgba(110,73,53,0.08);
+  padding-bottom: 1rem;
+  font-weight: 700;
+}
+
+.tracking-card-title i { color: var(--accent-gold, #C99648); }
+
+.journey-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.journey-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(201,150,72,0.12);
+  color: var(--accent-gold, #C99648);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.journey-card-icon.green {
+  background: rgba(63,82,62,0.1);
+  color: var(--primary-green, #3F523E);
+}
+
+.agarwood-journey-card {
+  border-top: 4px solid var(--accent-gold, #C99648);
+}
+
+.journey-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-muted, #8B9A8B);
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ==========================================================================
+   ORDER INFO GRID
+   ========================================================================== */
+
+.order-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.info-item { display: flex; flex-direction: column; gap: 0.2rem; }
+
+.info-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--text-muted, #8B9A8B);
+}
+
+.info-value {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: var(--text-main, #2D3A2D);
+  font-weight: 600;
+}
+.info-value.mono { font-family: 'Courier New', monospace; font-size: 1.05rem; }
+.info-value.gold { color: var(--earth-brown, #6E4935); font-size: 1.1rem; }
+.info-value.bold { font-weight: 700; }
+
+
+/* ==========================================================================
+   VERTICAL TIMELINE
+   ========================================================================== */
+
+.journey-timeline.vertical {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.journey-timeline.vertical::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 22px;
+  width: 3px;
+  background: rgba(110,73,53,0.12);
+  border-radius: 3px;
+}
+
+.journey-timeline.vertical li {
+  display: flex;
+  gap: 1.25rem;
+  padding-bottom: 1.5rem;
+  position: relative;
+  opacity: 0.35;
+  transition: opacity 0.4s ease;
+}
+
+.journey-timeline.vertical li:last-child { padding-bottom: 0; }
+.journey-timeline.vertical li.completed,
+.journey-timeline.vertical li.current { opacity: 1; }
+
+/* Progress fill bar for completed steps */
+.journey-timeline.vertical li.completed::after {
+  content: '';
+  position: absolute;
+  top: 44px;
+  left: 22px;
+  width: 3px;
+  height: calc(100% - 22px);
+  background: var(--primary-green, #3F523E);
+  z-index: 1;
+}
+
+.journey-timeline.vertical li.current::after { display: none; }
+.journey-timeline.vertical li:last-child::after { display: none; }
+
+.timeline-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #f0ece4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--text-muted, #8B9A8B);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+  border: 3px solid #fff;
+  transition: all 0.3s;
+}
+
+.journey-timeline.vertical li.completed .timeline-icon {
+  background: var(--primary-green, #3F523E);
+  color: #fff;
+}
+.journey-timeline.vertical li.current .timeline-icon {
+  background: var(--accent-gold, #C99648);
+  color: #fff;
+  box-shadow: 0 0 0 6px rgba(201,150,72,0.18);
+  transform: scale(1.1);
+}
+.journey-timeline.vertical li.cancelled .timeline-icon {
+  background: #c62828;
+  color: #fff;
+}
+
+.timeline-content { padding-top: 0.5rem; }
+.timeline-content h4 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  color: var(--primary-green-dark, #273827);
+  margin-bottom: 0.2rem;
+  font-weight: 600;
+}
+.timeline-content p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.82rem;
+  color: var(--text-muted, #8B9A8B);
+  margin: 0;
+  font-weight: 400;
+}
+
+
+/* ==========================================================================
+   ITEMS TABLE
+   ========================================================================== */
+
+.items-table-wrapper { overflow-x: auto; }
+
+.tracking-items-table { width: 100%; border-collapse: collapse; }
+
+.tracking-items-table th,
+.tracking-items-table td {
+  font-family: 'Poppins', sans-serif;
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(110,73,53,0.1);
+  font-size: 0.9rem;
+}
+
+.tracking-items-table th {
+  background: var(--cream-bg, #FBF8F3);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted, #8B9A8B);
+}
+
+.tracking-items-table tr:last-child td { border-bottom: none; }
+
+.item-name {
+  font-weight: 600;
+  color: var(--text-main, #2D3A2D);
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .result-grid { grid-template-columns: 1fr; }
+  .order-info-grid { grid-template-columns: 1fr 1fr; }
+  .tracking-form { flex-direction: column; }
+  .tracking-btn { width: 100%; }
+}
+
+@media (max-width: 500px) {
+  .order-info-grid { grid-template-columns: 1fr; }
+  .tracking-search-card { padding: 1.5rem; }
+  .tracking-hero-content { padding: 4rem 1rem; }
+}
