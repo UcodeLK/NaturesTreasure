@@ -391,10 +391,10 @@ function initModals() {
       const notes = document.getElementById('m_notes')?.value || '';
       const title = modalTitle?.textContent || 'Plantation & Oud Inquiry';
 
-      let msg = `- *Natures Wealth - ${title}*\n\n`;
-      if (name) msg += `- *Name:* ${name}\n`;
-      if (contact) msg += `- *Contact:* ${contact}\n`;
-      if (notes) msg += `- *Details:* ${notes}\n`;
+      let msg = `Inquiry: ${title}\n\n`;
+      if (name) msg += `Name: ${name}\n`;
+      if (contact) msg += `Email/Phone: ${contact}\n`;
+      if (notes) msg += `Message: ${notes}\n`;
 
       sendToWhatsApp(msg);
       if (modal) modal.classList.remove('active');
@@ -417,12 +417,12 @@ function initContactForm() {
       const interestText = interestSelect ? interestSelect.options[interestSelect.selectedIndex].text : '';
       const message = document.getElementById('c_msg')?.value || '';
 
-      let msg = `- *Natures Wealth Website Inquiry*\n\n`;
-      if (name) msg += `- *Name:* ${name}\n`;
-      if (email) msg += `- *Email:* ${email}\n`;
-      if (phone) msg += `- *Phone:* ${phone}\n`;
-      if (interestText) msg += `- *Interest:* ${interestText}\n`;
-      if (message) msg += `- *Message:* ${message}\n`;
+      let msg = `Contact Form Submission\n\n`;
+      if (name) msg += `Name: ${name}\n`;
+      if (email) msg += `Email: ${email}\n`;
+      if (phone) msg += `Phone: ${phone}\n`;
+      if (interestText) msg += `Interest: ${interestText}\n`;
+      if (message) msg += `Message: ${message}\n`;
 
       sendToWhatsApp(msg);
       showToast('Opening WhatsApp with your message...');
