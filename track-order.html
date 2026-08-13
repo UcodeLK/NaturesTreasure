@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Your Order | Natures Wealth</title>
+  <meta name="description" content="Track your Natures Wealth order and follow the journey of your agarwood from plantation to pure oud oil.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/tracking.css">
+</head>
+<body>
+
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="1.png" alt="Natures Wealth Logo">
+      </a>
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="agarwood.html" class="nav-link">Agarwood Trees</a></li>
+          <li><a href="shop.html" class="nav-link">Pure Oud Collection</a></li>
+          <li><a href="track-order.html" class="nav-link active">Track Order</a></li>
+          <li><a href="calculator.html" class="nav-link">ROI Calculator</a></li>
+          <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="btn btn-primary open-inquiry-modal" data-title="General Plantation & Oud Inquiry">
+          <i class="fas fa-seedling"></i> Inquire Now
+        </button>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="site-main tracking-hero-page">
+    <div class="tracking-hero-bg"></div>
+    <div class="container tracking-hero-content">
+      <div class="tracking-hero-badge"><i class="fas fa-leaf"></i> Agarwood Journey Tracker</div>
+      <h1 class="tracking-hero-title">Track Your Order <br><span>& Agarwood Journey</span></h1>
+      <p class="tracking-hero-subtitle">Enter your invoice number to trace your agarwood from plantation to your door.</p>
+
+      <div class="tracking-search-card">
+        <form id="trackingForm" class="tracking-form">
+          <div class="tracking-input-wrap">
+            <i class="fas fa-hashtag tracking-input-icon"></i>
+            <input type="text" id="invoiceNumber" class="tracking-input" placeholder="e.g. NT-2026-000123" required autocomplete="off">
+          </div>
+          <button type="submit" class="btn btn-gold tracking-btn" id="trackBtn">
+            <i class="fas fa-search"></i> Track Order
+          </button>
+        </form>
+        <p id="trackingMessage" class="tracking-message"></p>
+        <p class="tracking-hint">Try: <a href="#" onclick="document.getElementById('invoiceNumber').value='NT-2026-000001'">NT-2026-000001</a>, <a href="#" onclick="document.getElementById('invoiceNumber').value='NT-2026-000002'">NT-2026-000002</a></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
+            <img src="1.png" alt="Natures Wealth Logo" style="height: 56px;">
+            <span style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: #FFFFFF;">Natures Wealth</span>
+          </div>
+          <p>Natures Wealth is a pioneer in eco-sustainable Agarwood tree management and 100% pure organic Oud oil distillation.</p>
+        </div>
+        <div>
+          <h4 class="footer-title">Quick Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="shop.html">Pure Oud Collection</a></li>
+            <li><a href="track-order.html">Track Order</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Natures Wealth - Pure By Nature. All Rights Reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Simple redirect on submit
+    function handleSearch(e) {
+      e.preventDefault();
+      const invoice = document.getElementById('invoiceNumber').value.trim();
+      if (invoice) {
+        window.location.href = `track-result.html?invoice=${encodeURIComponent(invoice)}`;
+      }
+    }
+    document.getElementById('trackingForm').addEventListener('submit', handleSearch);
+  </script>
+</body>
+</html>

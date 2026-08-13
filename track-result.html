@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Details | Natures Wealth</title>
+  <meta name="description" content="Your Natures Wealth order tracking results.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/tracking.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="1.png" alt="Natures Wealth Logo">
+      </a>
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="agarwood.html" class="nav-link">Agarwood Trees</a></li>
+          <li><a href="shop.html" class="nav-link">Pure Oud Collection</a></li>
+          <li><a href="track-order.html" class="nav-link active">Track Order</a></li>
+          <li><a href="calculator.html" class="nav-link">ROI Calculator</a></li>
+          <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="btn btn-primary open-inquiry-modal" data-title="General Plantation & Oud Inquiry">
+          <i class="fas fa-seedling"></i> Inquire Now
+        </button>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="site-main" style="padding-top: 110px; background: var(--cream-bg);">
+
+    <!-- Result Header Strip -->
+    <div class="result-header-strip">
+      <div class="container result-header-inner">
+        <a href="track-order.html" class="btn btn-outline btn-sm result-back-btn">
+          <i class="fas fa-arrow-left"></i> Track Another Order
+        </a>
+        <div id="resultHeaderInfo">
+          <div class="result-header-loading"><i class="fas fa-circle-notch fa-spin"></i> Loading order...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beautiful Loading State -->
+    <div class="tracking-loading-page" id="loadingState">
+      <div class="tracking-loading-card">
+        <div class="loading-pulse-ring">
+          <div class="loading-icon-inner"><i class="fas fa-leaf"></i></div>
+        </div>
+        <h2 class="loading-title">Tracing Your Order</h2>
+        <p class="loading-subtitle">Connecting to our plantation network...</p>
+        <div class="loading-bar-track">
+          <div class="loading-bar-fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Results -->
+    <div class="container result-body" id="resultBody" style="display:none;">
+
+
+      <!-- Two column layout -->
+      <div class="result-grid" id="resultGrid">
+
+        <!-- LEFT: Order Info + Items -->
+        <div class="result-left">
+          <div class="tracking-card">
+            <h2 class="tracking-card-title"><i class="fas fa-receipt"></i> Order Information</h2>
+            <div class="order-info-grid">
+              <div class="info-item">
+                <span class="info-label">Invoice Number</span>
+                <span class="info-value mono" id="resInvoice">-</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Customer Name</span>
+                <span class="info-value" id="resName">-</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Order Date</span>
+                <span class="info-value" id="resDate">-</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Payment Status</span>
+                <span class="info-value" id="resPayment">-</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Total Amount</span>
+                <span class="info-value bold gold" id="resTotal">-</span>
+              </div>
+              <div class="info-item" id="estDeliveryWrap" style="display:none;">
+                <span class="info-label">Est. Delivery</span>
+                <span class="info-value" id="resEstDelivery">-</span>
+              </div>
+            </div>
+
+            <div id="agarwoodDetails" style="display:none; margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid rgba(110,73,53,0.1);">
+              <h3 style="font-size:1rem; color:var(--primary-green-dark); margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;"><i class="fas fa-leaf" style="color:var(--accent-gold);"></i> Agarwood Source</h3>
+              <div class="order-info-grid">
+                <div class="info-item">
+                  <span class="info-label">Plantation</span>
+                  <span class="info-value" id="resPlantation">-</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Tree / Batch</span>
+                  <span class="info-value mono" id="resTree">-</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Items -->
+          <div class="tracking-card">
+            <h2 class="tracking-card-title"><i class="fas fa-list"></i> Order Items</h2>
+            <div class="items-table-wrapper">
+              <table class="tracking-items-table">
+                <thead>
+                  <tr><th>Product</th><th>Qty</th><th>Unit Price</th><th>Total</th></tr>
+                </thead>
+                <tbody id="resItemsBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Timelines -->
+        <div class="result-right">
+
+          <!-- Agarwood Journey -->
+          <div class="tracking-card agarwood-journey-card" id="agarwoodJourneyCard">
+            <div class="journey-card-header">
+              <div class="journey-card-icon"><i class="fas fa-tree"></i></div>
+              <div>
+                <h2 class="tracking-card-title" style="border:none; padding:0; margin:0; font-size:1.5rem;">Agarwood Journey</h2>
+                <p id="agarwoodStageSubtitle" class="journey-subtitle" style="margin:0;">Loading...</p>
+              </div>
+            </div>
+            <ul class="journey-timeline vertical" id="agarwoodTimeline">
+              <li data-stage="Plantation"><div class="timeline-icon"><i class="fas fa-seedling"></i></div><div class="timeline-content"><h4>🌱 Plantation</h4><p>Young agarwood trees planted and carefully established.</p></div></li>
+              <li data-stage="Tree Growth"><div class="timeline-icon"><i class="fas fa-tree"></i></div><div class="timeline-content"><h4>🌳 Tree Growth</h4><p>Trees grow and mature under careful plantation management.</p></div></li>
+              <li data-stage="Inoculation"><div class="timeline-icon"><i class="fas fa-syringe"></i></div><div class="timeline-content"><h4>🌿 Inoculation</h4><p>A managed inoculation process begins resin formation within the tree.</p></div></li>
+              <li data-stage="Resin Development"><div class="timeline-icon"><i class="fas fa-droplet"></i></div><div class="timeline-content"><h4>🪵 Resin Development</h4><p>Valuable agarwood resin develops naturally within the wood.</p></div></li>
+              <li data-stage="Harvesting"><div class="timeline-icon"><i class="fas fa-axe"></i></div><div class="timeline-content"><h4>🌳 Harvesting</h4><p>Selected trees harvested at the appropriate stage of development.</p></div></li>
+              <li data-stage="Steam Distillation"><div class="timeline-icon"><i class="fas fa-flask"></i></div><div class="timeline-content"><h4>💧 Steam Distillation</h4><p>Agarwood processed through steam distillation to extract precious oil.</p></div></li>
+              <li data-stage="Luxury Wood Products"><div class="timeline-icon"><i class="fas fa-gem"></i></div><div class="timeline-content"><h4>✨ Luxury Wood Products</h4><p>The journey culminates in carefully crafted luxury agarwood products.</p></div></li>
+            </ul>
+          </div>
+
+          <!-- Order Status -->
+          <div class="tracking-card" id="orderDeliveryCard">
+            <div class="journey-card-header">
+              <div class="journey-card-icon green"><i class="fas fa-box-open"></i></div>
+              <div>
+                <h2 class="tracking-card-title" style="border:none; padding:0; margin:0; font-size:1.5rem;">Order Status</h2>
+                <p id="orderStatusSubtitle" class="journey-subtitle" style="margin:0;">Loading...</p>
+              </div>
+            </div>
+            <ul class="journey-timeline vertical" id="orderTimeline">
+              <li data-status="Order Placed"><div class="timeline-icon"><i class="fas fa-clipboard-check"></i></div><div class="timeline-content"><h4>Order Placed</h4><p>Your order has been received and confirmed.</p></div></li>
+              <li data-status="Processing"><div class="timeline-icon"><i class="fas fa-cogs"></i></div><div class="timeline-content"><h4>Processing</h4><p>Your order is being prepared for dispatch.</p></div></li>
+              <li data-status="Packed"><div class="timeline-icon"><i class="fas fa-box"></i></div><div class="timeline-content"><h4>Packed</h4><p>Your order has been securely packaged.</p></div></li>
+              <li data-status="Shipped"><div class="timeline-icon"><i class="fas fa-truck-fast"></i></div><div class="timeline-content"><h4>Shipped</h4><p>Your order is on its way.</p></div></li>
+              <li data-status="Out for Delivery"><div class="timeline-icon"><i class="fas fa-motorcycle"></i></div><div class="timeline-content"><h4>Out for Delivery</h4><p>Your order is out for delivery today.</p></div></li>
+              <li data-status="Delivered"><div class="timeline-icon"><i class="fas fa-house-chimney"></i></div><div class="timeline-content"><h4>Delivered</h4><p>Your order has been delivered. Enjoy!</p></div></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Error State -->
+    <div class="container" id="errorState" style="display:none; text-align:center; padding: 5rem 2rem;">
+      <div style="font-size:4rem; margin-bottom:1rem;">🔍</div>
+      <h2 style="font-family:var(--font-heading); color:var(--primary-green-dark); margin-bottom:1rem;">Order Not Found</h2>
+      <p style="color:var(--text-muted); margin-bottom:2rem;">Sorry, we couldn't find an order with that invoice number.<br>Please double-check and try again.</p>
+      <a href="track-order.html" class="btn btn-gold"><i class="fas fa-search"></i> Try Another Invoice</a>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
+            <img src="1.png" alt="Natures Wealth Logo" style="height: 56px;">
+            <span style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: #FFFFFF;">Natures Wealth</span>
+          </div>
+          <p>Natures Wealth is a pioneer in eco-sustainable Agarwood tree management and 100% pure organic Oud oil distillation.</p>
+        </div>
+        <div>
+          <h4 class="footer-title">Quick Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="shop.html">Pure Oud Collection</a></li>
+            <li><a href="track-order.html">Track Order</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Natures Wealth - Pure By Nature. All Rights Reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/tracking.js"></script>
+</body>
+</html>

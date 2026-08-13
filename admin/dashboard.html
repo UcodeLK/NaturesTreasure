@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Natures Wealth</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <img src="../1.png" alt="Logo">
+        <span>Admin Portal</span>
+      </div>
+      
+      <ul class="admin-nav">
+        <li><a href="dashboard.html" class="active"><i class="fas fa-chart-pie"></i> Dashboard</a></li>
+        <li><a href="sales.html"><i class="fas fa-chart-bar"></i> Sales Analytics</a></li>
+        <li><a href="tree-growth.html"><i class="fas fa-tree"></i> Tree Growth</a></li>
+      </ul>
+
+      <ul class="admin-nav" style="flex: none;">
+        <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <div class="admin-header">
+        <h1 class="admin-title">Orders Dashboard</h1>
+        <a href="order-details.html" class="btn btn-primary"><i class="fas fa-plus"></i> Create New Order</a>
+      </div>
+
+      <!-- Stats Row 1 — Order Counts -->
+      <div class="stats-grid stats-grid-5">
+        <div class="stat-card">
+          <div class="stat-icon-wrap" style="background:rgba(63,82,62,0.1); color:var(--primary-green);"><i class="fas fa-list-ol"></i></div>
+          <div class="stat-title">Total Orders</div>
+          <div class="stat-value" id="statTotal">-</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon-wrap" style="background:rgba(21,101,192,0.08); color:#1565C0;"><i class="fas fa-cogs"></i></div>
+          <div class="stat-title">Processing</div>
+          <div class="stat-value" id="statProcessing">-</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon-wrap" style="background:rgba(46,125,50,0.08); color:#2E7D32;"><i class="fas fa-truck-fast"></i></div>
+          <div class="stat-title">Shipped</div>
+          <div class="stat-value" id="statShipped">-</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon-wrap" style="background:rgba(46,125,50,0.08); color:#2E7D32;"><i class="fas fa-house-chimney"></i></div>
+          <div class="stat-title">Delivered</div>
+          <div class="stat-value" id="statDelivered">-</div>
+        </div>
+        <div class="stat-card stat-card-gold">
+          <div class="stat-icon-wrap" style="background:rgba(201,150,72,0.15); color:var(--accent-gold);"><i class="fas fa-coins"></i></div>
+          <div class="stat-title">Total Revenue</div>
+          <div class="stat-value" id="statRevenue">-</div>
+        </div>
+      </div>
+
+      <!-- Revenue Chart -->
+      <div class="chart-section">
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <h2 class="chart-card-title"><i class="fas fa-chart-area"></i> Revenue Overview</h2>
+            <select id="revenueRange" class="form-control admin-filter" style="width: auto;">
+              <option value="6">Last 6 Months</option>
+              <option value="12" selected>Last 12 Months</option>
+              <option value="all">All Time</option>
+            </select>
+          </div>
+          <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card chart-card-sm">
+          <h2 class="chart-card-title"><i class="fas fa-pie-chart"></i> Order Status</h2>
+          <div class="chart-container-sm">
+            <canvas id="statusChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="admin-toolbar">
+        <input type="text" id="searchInput" class="form-control admin-search" placeholder="Search Invoice, Name or Phone...">
+        
+        <select id="statusFilter" class="form-control admin-filter">
+          <option value="All">All Delivery Statuses</option>
+          <option value="Order Placed">Order Placed</option>
+          <option value="Processing">Processing</option>
+          <option value="Packed">Packed</option>
+          <option value="Shipped">Shipped</option>
+          <option value="Out for Delivery">Out for Delivery</option>
+          <option value="Delivered">Delivered</option>
+          <option value="Cancelled">Cancelled</option>
+        </select>
+
+        <select id="agarwoodFilter" class="form-control admin-filter">
+          <option value="All">All Agarwood Stages</option>
+          <option value="Plantation">Plantation</option>
+          <option value="Tree Growth">Tree Growth</option>
+          <option value="Inoculation">Inoculation</option>
+          <option value="Resin Development">Resin Development</option>
+          <option value="Harvesting">Harvesting</option>
+          <option value="Steam Distillation">Steam Distillation</option>
+          <option value="Luxury Wood Products">Luxury Wood Products</option>
+        </select>
+      </div>
+
+      <!-- Table -->
+      <div class="table-wrapper">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Invoice Number</th>
+              <th>Customer</th>
+              <th>Date</th>
+              <th>Total Amount</th>
+              <th>Delivery Status</th>
+              <th>Agarwood Stage</th>
+            </tr>
+          </thead>
+          <tbody id="ordersTableBody">
+            <tr>
+              <td colspan="6" style="text-align: center;">Loading orders...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/supabase-config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

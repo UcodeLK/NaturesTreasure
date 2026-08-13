@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROI Investment Calculator (LKR) | Natures Wealth</title>
+  <meta name="description"
+    content="Calculate your projected returns in Sri Lankan Rupees (LKR) for managed Agarwood tree allocation using environmentally friendly Thailand drip technology.">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom CSS Design System -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="1.png" alt="Natures Wealth Logo">
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="agarwood.html" class="nav-link">Agarwood Trees</a></li>
+          <li><a href="shop.html" class="nav-link">Pure Oud Collection</a></li>
+          <li><a href="track-order.html" class="nav-link">Track Order</a></li>
+          <li><a href="calculator.html" class="nav-link active">ROI Calculator</a></li>
+          <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-primary open-inquiry-modal" data-title="Calculator Inquiry">
+          <i class="fas fa-seedling"></i> Inquire Now
+        </button>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE HEADER HERO -->
+  <section class="hero" style="min-height: 45vh; padding-top: 140px; padding-bottom: 50px;">
+    <div class="container">
+      <div class="section-tag"><i class="fas fa-calculator"></i> Investment Estimator (LKR)</div>
+      <h1 class="hero-title" style="font-size: 3.2rem;">Tree Returns <span>Calculator</span></h1>
+      <p class="hero-description" style="max-width: 700px;">
+        Adjust the parameters below to project your estimated Oud yield, financial return in Sri Lankan Rupees (LKR), and environmental impact.
+      </p>
+    </div>
+  </section>
+
+  <!-- CALCULATOR SECTION -->
+  <section class="section bg-cream-card" id="calculator">
+    <div class="container">
+      <div class="calculator-box">
+        <div class="calc-inputs">
+          <h3>Tree Management Parameters</h3>
+
+          <div class="slider-group">
+            <div class="slider-header">
+              <span class="slider-label">Number of Managed Trees</span>
+              <span class="slider-value" id="treeValueDisplay">50 Trees</span>
+            </div>
+            <input type="range" id="treeSlider" min="10" max="500" step="10" value="50">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-header">
+              <span class="slider-label">Growth & Harvest Cycle</span>
+              <span class="slider-value" id="yearValueDisplay">7 Years</span>
+            </div>
+            <input type="range" id="yearSlider" min="5" max="10" step="1" value="7">
+          </div>
+
+          <div style="background: rgba(110,73,53,0.06); padding: 1.25rem; border-radius: var(--radius-sm); font-size: 0.88rem; color: var(--text-muted);">
+            <i class="fas fa-info-circle" style="color: var(--earth-brown);"></i> Projections are estimated based on historical Agarwood heartwood yield, current market prices for organic pure Oud oil, and environmentally friendly Thailand irrigation growth rates.
+          </div>
+        </div>
+
+        <div class="calc-results">
+          <div class="results-header">
+            <h4>Estimated Yield & Returns (LKR)</h4>
+            <p>Based on selected trees & growth cycle</p>
+          </div>
+
+          <div class="main-result">
+            <div class="main-result-label">Estimated Total Return Value</div>
+            <div class="main-result-val" id="estimatedValueDisplay">Rs. 38,500,000</div>
+          </div>
+
+          <div class="metric-grid">
+            <div class="metric-card">
+              <span>Pure Oil Yield</span>
+              <strong id="estimatedYieldDisplay">750 ml</strong>
+            </div>
+            <div class="metric-card">
+              <span>CO2 Offset Impact</span>
+              <strong id="co2OffsetDisplay">7.7 Tons</strong>
+            </div>
+            <div class="metric-card">
+              <span>Estimated ROI %</span>
+              <strong id="annualReturnDisplay">542%</strong>
+            </div>
+            <div class="metric-card">
+              <span>Care Method</span>
+              <strong>100% Organic Drip</strong>
+            </div>
+          </div>
+
+          <button class="btn btn-gold open-inquiry-modal" data-title="Custom LKR Tree Plan Request" style="width: 100%;">
+            <i class="fas fa-paper-plane"></i> Reserve Managed Trees Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL INQUIRY WINDOW -->
+  <div class="modal" id="inquiryModal">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+      <h3 id="modalTitle" style="font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--primary-green-dark);">Tree Investment Inquiry</h3>
+      <p id="modalBodyText" style="margin-bottom: 1.75rem; font-size: 0.95rem;">Connect with our plantation specialists to discuss your custom Agarwood tree investment.</p>
+
+      <form id="modalForm">
+        <div class="form-group">
+          <label class="form-label" for="m_name">Your Name</label>
+          <input type="text" id="m_name" class="form-control" placeholder="Your Name" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="m_email">Email / Phone</label>
+          <input type="text" id="m_email" class="form-control" placeholder="Email or Phone Number" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="m_notes">Notes / Desired Trees / Quantity</label>
+          <textarea id="m_notes" class="form-control" placeholder="Specify your desired number of trees..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-gold" style="width: 100%;">
+          Submit Inquiry via WhatsApp <i class="fas fa-check"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
+            <img src="1.png" alt="Natures Wealth Logo" style="height: 56px;">
+            <span style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: #FFFFFF;">Natures Wealth</span>
+          </div>
+          <p>
+            Natures Wealth is a pioneer in eco-sustainable Agarwood tree management and 100% pure organic Oud oil distillation utilizing Thailand environmentally friendly drip irrigation.
+          </p>
+          <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+            <a href="https://wa.me/94760595115" target="_blank" style="color: var(--accent-gold-light); font-size: 1.4rem;"><i class="fab fa-whatsapp"></i></a>
+            <a href="tel:+94770788806" style="color: var(--accent-gold-light); font-size: 1.3rem;"><i class="fas fa-phone"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Quick Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="agarwood.html">Agarwood Trees</a></li>
+            <li><a href="shop.html">Pure Oud Collection</a></li>
+            <li><a href="track-order.html">Track Order</a></li>
+            <li><a href="calculator.html">ROI Calculator (LKR)</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Direct Contacts</h4>
+          <ul class="footer-links">
+            <li><a href="tel:+94770788806">Direct Desk: +94 77 078 8806</a></li>
+            <li><a href="https://wa.me/94760595115" target="_blank">WhatsApp: +94 76 059 5115</a></li>
+            <li><a href="contact.html">Plantation Visit Booking</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Eco Commitment</h4>
+          <p style="font-size: 0.88rem; color: rgba(244,239,230,0.7); margin-bottom: 1rem;">
+            Every tree planted and nurtured via our Thailand drip irrigation system contributes directly to reforestation and carbon capture.
+          </p>
+          <div style="display: inline-block; background: rgba(201,150,72,0.15); padding: 0.6rem 1rem; border-radius: var(--radius-sm); color: var(--accent-gold-light); font-size: 0.82rem; font-weight: 600;">
+            <i class="fas fa-seedling"></i> 100% Environmentally Friendly
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Natures Wealth - Pure By Nature. All Rights Reserved.</div>
+        <div>Designed with Sustainability & Precision</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

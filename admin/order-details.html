@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Details | Natures Wealth Admin</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <img src="../1.png" alt="Logo">
+        <span>Admin Portal</span>
+      </div>
+      
+      <ul class="admin-nav">
+        <li><a href="dashboard.html"><i class="fas fa-chart-pie"></i> Dashboard</a></li>
+        <li><a href="order-details.html" class="active"><i class="fas fa-plus"></i> New Order</a></li>
+      </ul>
+
+      <ul class="admin-nav" style="flex: none;">
+        <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <div class="admin-header">
+        <h1 class="admin-title" id="pageTitle">Create Order</h1>
+        <div style="display: flex; gap: 1rem;">
+          <button id="downloadInvoiceBtn" class="btn" style="display: none; background: #C99648; color: #fff;"><i class="fas fa-file-pdf"></i> Download Invoice</button>
+          <button id="deleteBtn" class="btn btn-danger" style="display: none;"><i class="fas fa-trash"></i> Delete Order</button>
+          <a href="dashboard.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back</a>
+        </div>
+      </div>
+
+      <form id="orderForm">
+        
+        <div class="stats-grid">
+          <div class="stat-card" style="grid-column: span 2;">
+            <h3 style="margin-bottom: 1.5rem; color: var(--primary-green-dark);"><i class="fas fa-user"></i> Customer Info</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label">Order Type</label>
+                <select id="orderType" class="form-control" style="background-color: var(--cream-bg); font-weight: 600;">
+                  <option value="Mixed">Mixed (Trees & Products)</option>
+                  <option value="Trees Only">Trees Only</option>
+                  <option value="Products Only">Products Only</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Invoice Number</label>
+                <input type="text" id="invoiceNumber" class="form-control" required placeholder="e.g. NT-2026-000123">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Customer Name</label>
+                <input type="text" id="customerName" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" id="customerEmail" class="form-control">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone</label>
+                <input type="text" id="customerPhone" class="form-control">
+              </div>
+              <div class="form-group" style="grid-column: span 2;">
+                <label class="form-label">Shipping Address</label>
+                <textarea id="shippingAddress" class="form-control" rows="2"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <h3 style="margin-bottom: 1.5rem; color: var(--primary-green-dark);"><i class="fas fa-box"></i> Order Status</h3>
+            <div class="form-group">
+              <label class="form-label">Delivery Status</label>
+              <select id="status" class="form-control">
+                <option value="Order Placed">Order Placed</option>
+                <option value="Processing">Processing</option>
+                <option value="Packed">Packed</option>
+                <option value="Shipped">Shipped</option>
+                <option value="Out for Delivery">Out for Delivery</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Cancelled">Cancelled</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Payment Status</label>
+              <select id="paymentStatus" class="form-control">
+                <option value="Pending">Pending</option>
+                <option value="Paid">Paid</option>
+                <option value="Refunded">Refunded</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Estimated Delivery</label>
+              <input type="date" id="estDelivery" class="form-control">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Total Amount (LKR)</label>
+              <input type="number" step="0.01" id="totalAmount" class="form-control" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card" style="grid-column: span 2;">
+            <h3 style="margin-bottom: 1.5rem; color: var(--primary-green-dark);"><i class="fas fa-tree"></i> Agarwood Journey</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label">Current Stage</label>
+                <select id="agarwoodStage" class="form-control">
+                  <option value="Plantation">Plantation</option>
+                  <option value="Tree Growth">Tree Growth</option>
+                  <option value="Inoculation">Inoculation</option>
+                  <option value="Resin Development">Resin Development</option>
+                  <option value="Harvesting">Harvesting</option>
+                  <option value="Steam Distillation">Steam Distillation</option>
+                  <option value="Luxury Wood Products">Luxury Wood Products</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Plantation Name</label>
+                <input type="text" id="plantationName" class="form-control">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Tree / Batch ID</label>
+                <input type="text" id="treeId" class="form-control">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Stage Date (Optional)</label>
+                <input type="date" id="stageDate" class="form-control">
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <h3 style="margin-bottom: 1.5rem; color: var(--primary-green-dark);"><i class="fas fa-history"></i> Status History</h3>
+            <div id="historyContainer" style="max-height: 250px; overflow-y: auto; font-size: 0.85rem;">
+              <p style="color: var(--text-muted);">Save the order to view history.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Items -->
+        <div class="stat-card" style="margin-bottom: 2rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <h3 style="color: var(--primary-green-dark);"><i class="fas fa-list"></i> Order Items</h3>
+            <button type="button" id="addItemBtn" class="btn btn-outline btn-sm"><i class="fas fa-plus"></i> Add Item</button>
+          </div>
+          
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Total</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="itemsTableBody">
+              <!-- JS injected -->
+            </tbody>
+          </table>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="saveOrderBtn" style="font-size: 1.1rem; padding: 1rem 3rem;"><i class="fas fa-save"></i> Save Order</button>
+        <div id="formMsg" style="margin-top: 1rem; font-weight: 600;"></div>
+      </form>
+    </main>
+  </div>
+
+  <!-- Hidden Invoice Template for PDF Generation -->
+  <div style="display: none;">
+    <div id="invoiceTemplate" style="width: 800px; padding: 40px; font-family: 'Poppins', sans-serif; color: #222922; background: #fff; box-sizing: border-box;">
+      
+      <!-- Header -->
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #3F523E; padding-bottom: 20px; margin-bottom: 30px;">
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <!-- We use absolute URL or just text if image fails in pdf -->
+          <h1 style="font-family: 'Playfair Display', serif; font-size: 28px; color: #3F523E; margin: 0;">Natures Treasure</h1>
+        </div>
+        <div style="text-align: right;">
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; color: #C99648; margin: 0; text-transform: uppercase; letter-spacing: 2px;">Invoice</h2>
+          <p style="margin: 5px 0 0 0; font-size: 14px; color: #647065;">Date: <strong id="invDate" style="color: #222922;">-</strong></p>
+          <p style="margin: 5px 0 0 0; font-size: 14px; color: #647065;">Invoice #: <strong id="invNumber" style="color: #222922;">-</strong></p>
+        </div>
+      </div>
+
+      <!-- Addresses -->
+      <div style="display: flex; justify-content: space-between; margin-bottom: 40px;">
+        <div style="width: 45%;">
+          <h4 style="font-size: 12px; text-transform: uppercase; color: #647065; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-bottom: 10px;">Billed To:</h4>
+          <p style="margin: 0 0 5px 0; font-weight: 600; font-size: 16px;" id="invCustomerName">-</p>
+          <p style="margin: 0 0 5px 0; font-size: 14px;" id="invCustomerEmail">-</p>
+          <p style="margin: 0 0 5px 0; font-size: 14px;" id="invCustomerPhone">-</p>
+          <p style="margin: 0 0 5px 0; font-size: 14px; line-height: 1.5; white-space: pre-wrap;" id="invCustomerAddress">-</p>
+        </div>
+        <div style="width: 45%; text-align: right;">
+          <h4 style="font-size: 12px; text-transform: uppercase; color: #647065; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-bottom: 10px;">From:</h4>
+          <p style="margin: 0 0 5px 0; font-weight: 600; font-size: 16px;">Natures Treasure</p>
+          <p style="margin: 0 0 5px 0; font-size: 14px;">123 Eco Plantation Way</p>
+          <p style="margin: 0 0 5px 0; font-size: 14px;">Colombo, Sri Lanka</p>
+          <p style="margin: 0 0 5px 0; font-size: 14px;">support@naturestreasurelk.com</p>
+          <p style="margin: 0 0 5px 0; font-size: 14px;">naturestreasurelk.com</p>
+        </div>
+      </div>
+
+      <!-- Items Table -->
+      <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px;">
+        <thead>
+          <tr>
+            <th style="text-align: left; padding: 12px; background: #3F523E; color: #fff; font-size: 14px; border: 1px solid #3F523E;">Description</th>
+            <th style="text-align: center; padding: 12px; background: #3F523E; color: #fff; font-size: 14px; border: 1px solid #3F523E; width: 100px;">Qty</th>
+            <th style="text-align: right; padding: 12px; background: #3F523E; color: #fff; font-size: 14px; border: 1px solid #3F523E; width: 150px;">Unit Price (LKR)</th>
+            <th style="text-align: right; padding: 12px; background: #3F523E; color: #fff; font-size: 14px; border: 1px solid #3F523E; width: 150px;">Total (LKR)</th>
+          </tr>
+        </thead>
+        <tbody id="invItemsBody">
+          <!-- JS injected -->
+        </tbody>
+      </table>
+
+      <!-- Totals -->
+      <div style="display: flex; justify-content: flex-end; margin-bottom: 40px;">
+        <div style="width: 350px;">
+          <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee;">
+            <span style="color: #647065; font-weight: 600;">Subtotal:</span>
+            <span style="font-weight: 600;" id="invSubtotal">-</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 2px solid #3F523E;">
+            <span style="font-size: 18px; font-weight: 700; color: #3F523E;">Total Amount:</span>
+            <span style="font-size: 18px; font-weight: 700; color: #3F523E;" id="invTotal">-</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div style="margin-top: 50px; text-align: center; color: #647065; font-size: 12px; padding-top: 20px; border-top: 1px solid #eee;">
+        <p style="margin: 0 0 5px 0; font-family: 'Playfair Display', serif; font-size: 16px; font-style: italic; color: #3F523E;">Thank you for your business!</p>
+        <p style="margin: 0;">Payment Status: <strong id="invPaymentStatus" style="color: #222922;">-</strong></p>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../js/supabase-config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/order-details.js"></script>
+</body>
+</html>

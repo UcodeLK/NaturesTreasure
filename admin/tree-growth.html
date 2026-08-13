@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tree Growth Analytics | Admin Portal | Natures Wealth</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <img src="../1.png" alt="Logo">
+        <span>Admin Portal</span>
+      </div>
+      
+      <ul class="admin-nav">
+        <li><a href="dashboard.html"><i class="fas fa-chart-pie"></i> Dashboard</a></li>
+        <li><a href="sales.html"><i class="fas fa-chart-bar"></i> Sales Analytics</a></li>
+        <li><a href="tree-growth.html" class="active"><i class="fas fa-tree"></i> Tree Growth</a></li>
+      </ul>
+
+      <ul class="admin-nav" style="flex: none;">
+        <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <div class="admin-header">
+        <h1 class="admin-title">Tree Growth Analytics</h1>
+      </div>
+
+      <!-- Stats row -->
+      <div class="stats-grid stats-grid-5">
+        <div class="stat-card">
+          <div class="stat-title">Total Active Trees</div>
+          <div class="stat-value" id="statTotalTrees">-</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">In Plantation</div>
+          <div class="stat-value" id="statPlantation">-</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Inoculation Phase</div>
+          <div class="stat-value" id="statInoculation">-</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Resin Development</div>
+          <div class="stat-value" id="statResin">-</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Harvested / Distilled</div>
+          <div class="stat-value" id="statHarvested">-</div>
+        </div>
+      </div>
+
+      <!-- Charts -->
+      <div class="chart-section">
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <h2 class="chart-card-title"><i class="fas fa-chart-bar"></i> Trees by Stage</h2>
+          </div>
+          <div class="chart-container">
+            <canvas id="stageBarChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card chart-card-sm">
+          <h2 class="chart-card-title"><i class="fas fa-leaf"></i> Stage Distribution</h2>
+          <div class="chart-container-sm">
+            <canvas id="stagePieChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Tree Updates Table -->
+      <div class="table-wrapper" style="margin-top: 2rem;">
+        <h2 style="padding: 1.5rem; border-bottom: 1px solid var(--border-color); font-family: var(--font-heading); color: var(--primary-green-dark);">Recently Updated Trees</h2>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Invoice / Order</th>
+              <th>Customer</th>
+              <th>Tree / Batch ID</th>
+              <th>Current Stage</th>
+              <th>Date Updated</th>
+            </tr>
+          </thead>
+          <tbody id="treeUpdatesTableBody">
+            <tr>
+              <td colspan="5" style="text-align: center;">Loading data...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="../js/supabase-config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/tree-growth.js"></script>
+</body>
+</html>
