@@ -35,7 +35,7 @@
     <main class="admin-main">
       <div class="admin-header">
         <h1 class="admin-title" id="pageTitle">Create Order</h1>
-        <div style="display: flex; gap: 1rem;">
+        <div class="admin-header-actions">
           <button id="downloadInvoiceBtn" class="btn" style="display: none; background: #C99648; color: #fff;"><i class="fas fa-file-pdf"></i> Download Invoice</button>
           <button id="deleteBtn" class="btn btn-danger" style="display: none;"><i class="fas fa-trash"></i> Delete Order</button>
           <a href="dashboard.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back</a>
@@ -45,9 +45,9 @@
       <form id="orderForm">
         
         <div class="stats-grid">
-          <div class="stat-card" style="grid-column: span 2;">
+          <div class="stat-card span-2">
             <h3 style="margin-bottom: 1.5rem; color: var(--primary-green-dark);"><i class="fas fa-user"></i> Customer Info</h3>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-grid-2">
               <div class="form-group">
                 <label class="form-label">Order Type</label>
                 <select id="orderType" class="form-control" style="background-color: var(--cream-bg); font-weight: 600;">
@@ -72,7 +72,7 @@
                 <label class="form-label">Phone</label>
                 <input type="text" id="customerPhone" class="form-control">
               </div>
-              <div class="form-group" style="grid-column: span 2;">
+              <div class="form-group form-grid-full">
                 <label class="form-label">Shipping Address</label>
                 <textarea id="shippingAddress" class="form-control" rows="2"></textarea>
               </div>
@@ -113,9 +113,9 @@
         </div>
 
         <div class="stats-grid">
-          <div class="stat-card" style="grid-column: span 2;">
+          <div class="stat-card span-2">
             <h3 style="margin-bottom: 1.5rem; color: var(--primary-green-dark);"><i class="fas fa-tree"></i> Agarwood Journey</h3>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-grid-2">
               <div class="form-group">
                 <label class="form-label">Current Stage</label>
                 <select id="agarwoodStage" class="form-control">

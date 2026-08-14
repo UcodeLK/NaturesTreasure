@@ -40,12 +40,12 @@
 
       <!-- Comparison controls -->
       <div class="admin-toolbar" style="background:var(--cream-surface); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
-        <div style="display:flex; align-items:center; gap:1rem;">
+        <div class="admin-toolbar-wrap">
           <strong style="color:var(--primary-green-dark);">Compare Months:</strong>
-          <input type="month" id="month1" class="form-control admin-filter" style="width: auto;">
-          <span>VS</span>
-          <input type="month" id="month2" class="form-control admin-filter" style="width: auto;">
-          <button id="compareBtn" class="btn btn-primary">Compare</button>
+          <input type="month" id="month1" class="form-control admin-filter">
+          <span style="font-weight: 600; text-align: center;">VS</span>
+          <input type="month" id="month2" class="form-control admin-filter">
+          <button id="compareBtn" class="btn btn-primary" style="width: auto;">Compare</button>
         </div>
       </div>
 

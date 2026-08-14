@@ -7,6 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const logoutBtn = document.getElementById('logoutBtn');
   const authError = document.getElementById('authError');
 
+  // Inject Mobile Navigation Toggle if admin-layout and admin-sidebar exist
+  const adminLayout = document.querySelector('.admin-layout');
+  const adminSidebar = document.querySelector('.admin-sidebar');
+  if (adminLayout && adminSidebar) {
+    setupMobileNav(adminLayout, adminSidebar);
+  }
+
   // Check Session on Load
   checkSession();
 
@@ -74,4 +81,57 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.href = 'login.html';
     });
   }
+
+  function setupMobileNav(layout, sidebar) {
+    if (document.querySelector('.mobile-topbar')) return;
+
+    // Create Mobile Topbar
+    const topbar = document.createElement('div');
+    topbar.className = 'mobile-topbar';
+    topbar.innerHTML = `
+      <a href="dashboard.html" class="mobile-brand">
+        <img src="../1.png" alt="Logo">
+        <span>Admin Portal</span>
+      </a>
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    `;
+
+    // Create Overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'sidebar-overlay';
+
+    layout.parentNode.insertBefore(topbar, layout);
+    document.body.appendChild(overlay);
+
+    const toggleBtn = document.getElementById('mobileNavToggle');
+
+    function openSidebar() {
+      sidebar.classList.add('sidebar-open');
+      overlay.classList.add('active');
+    }
+
+    function closeSidebar() {
+      sidebar.classList.remove('sidebar-open');
+      overlay.classList.remove('active');
+    }
+
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (sidebar.classList.contains('sidebar-open')) {
+        closeSidebar();
+      } else {
+        openSidebar();
+      }
+    });
+
+    overlay.addEventListener('click', closeSidebar);
+
+    // Close sidebar when navigating
+    sidebar.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeSidebar);
+    });
+  }
 });
+
