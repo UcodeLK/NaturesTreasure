@@ -44,6 +44,12 @@
   </url>
 
   <url>
+    <loc>https://naturestreasurelk.com/track-result.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
     <loc>https://naturestreasurelk.com/contact.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
