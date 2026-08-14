@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Natures Wealth - Interactive Script & Logic
+   Natures Treasure - Interactive Script & Logic
    Pure By Nature | Agarwood Management & Artisanal Pure Oud Oil
    ========================================================================== */
 
