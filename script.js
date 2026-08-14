@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    Natures Wealth - Interactive Script & Logic
    Pure By Nature | Agarwood Management & Artisanal Pure Oud Oil
    ========================================================================== */
@@ -293,8 +293,8 @@ function initRoiCalculator() {
     const totalEstimatedValueLKR = Math.round(trees * baseValuePerTreeLKR * maturityMultiplier);
     const estimatedOilMl = Math.round(trees * (10 + (years - 5) * 2.5));
     const co2OffsetKg = Math.round(trees * 22 * years);
-    const investmentCostLKR = trees * 120000;
-    const projectedReturnPercent = Math.round(((totalEstimatedValueLKR - investmentCostLKR) / investmentCostLKR) * 100);
+    const purchaseCostLKR = trees * 120000;
+    const projectedReturnPercent = Math.round(((totalEstimatedValueLKR - purchaseCostLKR) / purchaseCostLKR) * 100);
 
     // Format & Render Outputs
     estimatedValueDisplay.textContent = 'Rs. ' + totalEstimatedValueLKR.toLocaleString();
@@ -353,7 +353,7 @@ function initModals() {
   orderButtons.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      const itemTitle = btn.getAttribute('data-title') || 'Agarwood Investment & Oud Inquiry';
+      const itemTitle = btn.getAttribute('data-title') || 'Agarwood Tree & Oud Inquiry';
       const itemPrice = btn.getAttribute('data-price');
 
       if (modalTitle) {
@@ -362,7 +362,7 @@ function initModals() {
       if (modalBodyText) {
         modalBodyText.textContent = itemPrice
           ? `Inquire about purchasing ${itemTitle} (${itemPrice}) directly from our master distillery.`
-          : `Connect with our plantation specialists to discuss your custom Agarwood tree investment.`;
+          : `Connect with our plantation specialists to discuss your custom Agarwood tree package.`;
       }
 
       if (modal) modal.classList.add('active');

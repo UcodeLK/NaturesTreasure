@@ -18,7 +18,7 @@ Copy of `Natures (1).png` provided by user.
 #### [NEW] [index.html](file:///c:/Users/Umar/Documents/UCODE/NaturesNestIlham/index.html)
 Comprehensive single-page / multi-section luxury website containing:
 1. **Header & Navigation**: Glassmorphism navbar with brand logo, nav items (Home, Plantation & Management, Thailand Tech, Oud Collection, ROI Calculator, Contact Us), and Cart/Inquire quick count.
-2. **Hero Banner**: Atmospheric luxury hero section with tagline "Natures Treasure - Pure By Nature", compelling CTAs ("Invest in Trees", "Explore Oud Collection"), and key highlights badges.
+2. **Hero Banner**: Atmospheric luxury hero section with tagline "Natures Treasure - Pure By Nature", compelling CTAs ("Explore Tree Packages", "Explore Oud Collection"), and key highlights badges.
 3. **About & Philosophy**: Story of sustainable Agarwood cultivation, Asian heritage, and 100% organic commitment.
 4. **Agarwood Plantation & Tree Management**:
    - Explanation of client ownership & managed growth services.
@@ -29,11 +29,11 @@ Comprehensive single-page / multi-section luxury website containing:
 6. **Pure Oud Oil Shop & Artisanal Collection**:
    - Interactive product grid with filters (All, Pure Essence, Aged Reserve, Attar Blend).
    - High quality Unsplash product photography, price breakdown, origin info, and "Inquire / Order" modals.
-7. **Interactive ROI & Tree Investment Estimator**:
+7. **Interactive ROI & Tree Yield Estimator**:
    - Interactive sliders (Number of Trees, Growth Maturity Years 5-10).
    - Real-time calculated projections for estimated yields, estimated value in USD, and CO2 offset metrics.
 8. **Plantation Visit & Contact Section**:
-   - Booking form for plantation visits, investment consultation, or custom Oud inquiries.
+   - Booking form for plantation visits, tree ownership consultation, or custom Oud inquiries.
 9. **Footer**: Brand links, certification badges, contact details, social links.
 
 #### [NEW] [style.css](file:///c:/Users/Umar/Documents/UCODE/NaturesNestIlham/style.css)
