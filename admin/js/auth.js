@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     topbar.className = 'mobile-topbar';
     topbar.innerHTML = `
       <a href="dashboard.html" class="mobile-brand">
-        <img src="../Favicon.png" alt="Logo">
+        <img src="../1.png" alt="Logo">
         <span>Admin Portal</span>
       </a>
       <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Menu">
