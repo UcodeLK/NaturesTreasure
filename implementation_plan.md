@@ -1,6 +1,6 @@
-# Implementation Plan - Natures Wealth Website Development
+# Implementation Plan - Natures Treasure Website Development
 
-Create a luxury, high-end, responsive website for **Natures Wealth** ("Pure By Nature"), specializing in Agarwood tree management (growing on behalf of clients using chemical-free eco-friendly Thailand drip/mist irrigation technology) and sale of 100% Pure Organic Oud Oil.
+Create a luxury, high-end, responsive website for **Natures Treasure** ("Pure By Nature"), specializing in Agarwood tree management (growing on behalf of clients using chemical-free eco-friendly Thailand drip/mist irrigation technology) and sale of 100% Pure Organic Oud Oil.
 
 ## User Review Required
 
@@ -18,7 +18,7 @@ Copy of `Natures (1).png` provided by user.
 #### [NEW] [index.html](file:///c:/Users/Umar/Documents/UCODE/NaturesNestIlham/index.html)
 Comprehensive single-page / multi-section luxury website containing:
 1. **Header & Navigation**: Glassmorphism navbar with brand logo, nav items (Home, Plantation & Management, Thailand Tech, Oud Collection, ROI Calculator, Contact Us), and Cart/Inquire quick count.
-2. **Hero Banner**: Atmospheric luxury hero section with tagline "Natures Wealth - Pure By Nature", compelling CTAs ("Invest in Trees", "Explore Oud Collection"), and key highlights badges.
+2. **Hero Banner**: Atmospheric luxury hero section with tagline "Natures Treasure - Pure By Nature", compelling CTAs ("Invest in Trees", "Explore Oud Collection"), and key highlights badges.
 3. **About & Philosophy**: Story of sustainable Agarwood cultivation, Asian heritage, and 100% organic commitment.
 4. **Agarwood Plantation & Tree Management**:
    - Explanation of client ownership & managed growth services.

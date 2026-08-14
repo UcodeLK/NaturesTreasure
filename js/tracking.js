@@ -1,4 +1,4 @@
-// Natures Wealth - Order Tracking Logic (for track-result.html)
+// Natures Treasure - Order Tracking Logic (for track-result.html)
 document.addEventListener('DOMContentLoaded', async () => {
   // Only run on the results page
   if (!document.getElementById('resultBody')) return;
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Update page title
-  document.title = `Tracking ${invoiceNumber} | Natures Wealth`;
+  document.title = `Tracking ${invoiceNumber} | Natures Treasure`;
 
   // Check that supabaseClient is available
   if (typeof supabaseClient === 'undefined') {
