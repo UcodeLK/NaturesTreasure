@@ -51,7 +51,9 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
 }
-html, body {
+
+html,
+body {
   height: 100%;
 }
 
@@ -646,45 +648,45 @@ img {
   transition: opacity 0.85s ease, transform 0.85s ease;
 }
 
-  .hero .hero-content {
-    opacity: 0;
-    transform: translateX(-26px);
-    transition: opacity 0.9s ease, transform 0.9s ease;
-  }
+.hero .hero-content {
+  opacity: 0;
+  transform: translateX(-26px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
 
-  .hero .hero-image-wrapper {
-    opacity: 0;
-    transform: translateX(26px);
-    transition: opacity 0.9s ease, transform 0.9s ease;
-  }
+.hero .hero-image-wrapper {
+  opacity: 0;
+  transform: translateX(26px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
 
-  .about-hero-copy.animate-in,
-  .about-hero-card.animate-in,
-  .hero-content.animate-in,
-  .hero-image-wrapper.animate-in,
-  .story-card.animate-in,
-  .message-card.animate-in,
-  .vision-card.animate-in,
-  .about-cta.animate-in,
-  .hero-stats .stat-item.animate-in {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.about-hero-copy.animate-in,
+.about-hero-card.animate-in,
+.hero-content.animate-in,
+.hero-image-wrapper.animate-in,
+.story-card.animate-in,
+.message-card.animate-in,
+.vision-card.animate-in,
+.about-cta.animate-in,
+.hero-stats .stat-item.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-  .highlight-box.animate-in {
-    opacity: 1;
-    transform: translateY(0);
-    animation: highlight-pop 0.8s ease both;
-  }
+.highlight-box.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+  animation: highlight-pop 0.8s ease both;
+}
 
-  .hero .hero-content.animate-in,
-  .hero .hero-image-wrapper.animate-in {
-    opacity: 1;
-    transform: none;
-  }
+.hero .hero-content.animate-in,
+.hero .hero-image-wrapper.animate-in {
+  opacity: 1;
+  transform: none;
+}
 
-  .hero .hero-image-wrapper.animate-in {
-    animation: none;
+.hero .hero-image-wrapper.animate-in {
+  animation: none;
 }
 
 .hero-stats .stat-item.animate-in {
@@ -696,10 +698,12 @@ img {
     opacity: 0;
     transform: translateY(18px) scale(0.98);
   }
+
   60% {
     opacity: 1;
     transform: translateY(-6px) scale(1.01);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -717,6 +721,7 @@ img {
     opacity: 0;
     transform: translateY(32px) scale(0.98);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -728,6 +733,7 @@ img {
     opacity: 0;
     transform: scale(0.96);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
@@ -735,6 +741,7 @@ img {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .about-hero-copy,
   .about-hero-card,
   .story-card,
@@ -834,6 +841,7 @@ img {
 }
 
 @media (max-width: 1024px) {
+
   .about-hero-grid,
   .about-message-grid {
     grid-template-columns: 1fr;
@@ -1821,7 +1829,7 @@ textarea.form-control {
 
   .highlight-box {
     padding: 1rem;
-    background: rgba(255,255,255,0.04);
+    background: rgba(255, 255, 255, 0.04);
     border-radius: var(--radius-md);
   }
 
@@ -2133,7 +2141,9 @@ textarea.form-control {
 }
 
 @media (max-width: 360px) {
-  html { font-size: 15px; }
+  html {
+    font-size: 15px;
+  }
 
   .hero-image-wrapper img {
     height: 220px;
@@ -2143,11 +2153,17 @@ textarea.form-control {
     font-size: 0.95rem;
   }
 
-  .container { padding-left: 0.75rem; padding-right: 0.75rem; }
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
 }
 
 /* Ensure any table becomes horizontally scrollable on very small screens */
-.table-responsive table { width: 100%; border-collapse: collapse; }
+.table-responsive table {
+  width: 100%;
+  border-collapse: collapse;
+}
 
 
 /* ==========================================================================
@@ -2324,8 +2340,8 @@ textarea.form-control {
   max-width: 560px;
   border-radius: 24px;
   overflow: hidden;
-  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 52%, rgba(0,0,0,0) 100%);
-  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 52%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 52%, rgba(0, 0, 0, 0) 100%);
+  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 52%, rgba(0, 0, 0, 0) 100%);
   opacity: 0;
   transform: scale(0.94) translateY(35px);
   transition: opacity 0.85s cubic-bezier(0.25, 1, 0.5, 1), transform 0.85s cubic-bezier(0.25, 1, 0.5, 1);
@@ -2370,8 +2386,8 @@ textarea.form-control {
 .final-product-image {
   max-width: 680px;
   margin: 0 auto 3rem;
-  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%);
-  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 55%, rgba(0, 0, 0, 0) 100%);
+  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 55%, rgba(0, 0, 0, 0) 100%);
 }
 
 .final-product-image img {
@@ -2392,8 +2408,15 @@ textarea.form-control {
 }
 
 @keyframes pulseGlow {
-  0%   { opacity: 0.45; transform: translateX(-50%) scale(0.92); }
-  100% { opacity: 1;    transform: translateX(-50%) scale(1.1);  }
+  0% {
+    opacity: 0.45;
+    transform: translateX(-50%) scale(0.92);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.1);
+  }
 }
 
 .final-destination-content {
@@ -2491,7 +2514,8 @@ textarea.form-control {
   }
 
   /* Extra safety: limit page horizontal overflow on narrow screens */
-  html, body {
+  html,
+  body {
     max-width: 100%;
     overflow-x: hidden;
   }
@@ -2518,13 +2542,31 @@ textarea.form-control {
    JS will add `motion-*` and `motion-hidden` classes; it will add `animate-in` when visible.
    ========================================================================== */
 
-.motion-hidden { opacity: 0; will-change: opacity, transform; }
+.motion-hidden {
+  opacity: 0;
+  will-change: opacity, transform;
+}
 
-.motion-fade-up.motion-hidden { transform: translateY(18px); }
-.motion-slide-left.motion-hidden { transform: translateX(-22px); }
-.motion-slide-right.motion-hidden { transform: translateX(22px); }
-.motion-scale.motion-hidden { transform: scale(0.96); }
-.motion-pop.motion-hidden { transform: scale(0.96); opacity: 0; }
+.motion-fade-up.motion-hidden {
+  transform: translateY(18px);
+}
+
+.motion-slide-left.motion-hidden {
+  transform: translateX(-22px);
+}
+
+.motion-slide-right.motion-hidden {
+  transform: translateX(22px);
+}
+
+.motion-scale.motion-hidden {
+  transform: scale(0.96);
+}
+
+.motion-pop.motion-hidden {
+  transform: scale(0.96);
+  opacity: 0;
+}
 
 .motion-fade-up,
 .motion-slide-left,
@@ -2537,14 +2579,22 @@ textarea.form-control {
   opacity: 1;
 }
 
-.animate-in { opacity: 1 !important; transform: none !important; }
+.animate-in {
+  opacity: 1 !important;
+  transform: none !important;
+}
 
 @media (prefers-reduced-motion: reduce) {
+
   .motion-fade-up,
   .motion-slide-left,
   .motion-slide-right,
   .motion-scale,
-  .motion-pop { transition: none !important; transform: none !important; opacity: 1 !important; }
+  .motion-pop {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
 }
 
 /* End of motion system */
