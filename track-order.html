@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-134YQQHSP4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-134YQQHSP4');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Track Your Order | Natures Treasure</title>
-  <meta name="description" content="Track your Natures Treasure order and follow the journey of your agarwood from plantation to pure oud oil.">
+  <meta name="description"
+    content="Track your Natures Treasure order and follow the journey of your agarwood from plantation to pure oud oil.">
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="Favicon.png">
 
@@ -12,6 +23,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="css/tracking.css">
 </head>
+
 <body>
 
   <header class="navbar" id="navbar">
@@ -47,20 +59,24 @@
     <div class="container tracking-hero-content">
       <div class="tracking-hero-badge"><i class="fas fa-leaf"></i> Agarwood Journey Tracker</div>
       <h1 class="tracking-hero-title">Track Your Order <br><span>& Agarwood Journey</span></h1>
-      <p class="tracking-hero-subtitle">Enter your invoice number to trace your agarwood from plantation to your door.</p>
+      <p class="tracking-hero-subtitle">Enter your invoice number to trace your agarwood from plantation to your door.
+      </p>
 
       <div class="tracking-search-card">
         <form id="trackingForm" class="tracking-form">
           <div class="tracking-input-wrap">
             <i class="fas fa-hashtag tracking-input-icon"></i>
-            <input type="text" id="invoiceNumber" class="tracking-input" placeholder="e.g. NT-2026-000123" required autocomplete="off">
+            <input type="text" id="invoiceNumber" class="tracking-input" placeholder="e.g. NT-2026-000123" required
+              autocomplete="off">
           </div>
           <button type="submit" class="btn btn-gold tracking-btn" id="trackBtn">
             <i class="fas fa-search"></i> Track Order
           </button>
         </form>
         <p id="trackingMessage" class="tracking-message"></p>
-        <p class="tracking-hint">Try: <a href="#" onclick="document.getElementById('invoiceNumber').value='NT-2026-000001'">NT-2026-000001</a>, <a href="#" onclick="document.getElementById('invoiceNumber').value='NT-2026-000002'">NT-2026-000002</a></p>
+        <p class="tracking-hint">Try: <a href="#"
+            onclick="document.getElementById('invoiceNumber').value='NT-2026-000001'">NT-2026-000001</a>, <a href="#"
+            onclick="document.getElementById('invoiceNumber').value='NT-2026-000002'">NT-2026-000002</a></p>
       </div>
     </div>
   </main>
@@ -71,14 +87,18 @@
         <div class="footer-brand">
           <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
             <img src="1.png" alt="Natures Treasure Logo" style="height: 56px;">
-            <span style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: #FFFFFF;">Natures Treasure</span>
+            <span style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: #FFFFFF;">Natures
+              Treasure</span>
           </div>
           <p>
-            Natures Treasure is a pioneer in eco-sustainable Agarwood tree management and 100% pure organic Oud oil distillation utilizing Thailand environmentally friendly drip irrigation.
+            Natures Treasure is a pioneer in eco-sustainable Agarwood tree management and 100% pure organic Oud oil
+            distillation utilizing Thailand environmentally friendly drip irrigation.
           </p>
           <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
-            <a href="https://wa.me/94760595115" target="_blank" style="color: var(--accent-gold-light); font-size: 1.4rem;"><i class="fab fa-whatsapp"></i></a>
-            <a href="tel:+94770788806" style="color: var(--accent-gold-light); font-size: 1.3rem;"><i class="fas fa-phone"></i></a>
+            <a href="https://wa.me/94760595115" target="_blank"
+              style="color: var(--accent-gold-light); font-size: 1.4rem;"><i class="fab fa-whatsapp"></i></a>
+            <a href="tel:+94770788806" style="color: var(--accent-gold-light); font-size: 1.3rem;"><i
+                class="fas fa-phone"></i></a>
           </div>
         </div>
 
@@ -108,9 +128,11 @@
         <div>
           <h4 class="footer-title">Eco Commitment</h4>
           <p style="font-size: 0.88rem; color: rgba(244,239,230,0.7); margin-bottom: 1rem;">
-            Every tree planted and nurtured via our Thailand drip irrigation system contributes directly to reforestation and carbon capture.
+            Every tree planted and nurtured via our Thailand drip irrigation system contributes directly to
+            reforestation and carbon capture.
           </p>
-          <div style="display: inline-block; background: rgba(201,150,72,0.15); padding: 0.6rem 1rem; border-radius: var(--radius-sm); color: var(--accent-gold-light); font-size: 0.82rem; font-weight: 600;">
+          <div
+            style="display: inline-block; background: rgba(201,150,72,0.15); padding: 0.6rem 1rem; border-radius: var(--radius-sm); color: var(--accent-gold-light); font-size: 0.82rem; font-weight: 600;">
             <i class="fas fa-seedling"></i> 100% Environmentally Friendly
           </div>
         </div>
@@ -136,4 +158,5 @@
     document.getElementById('trackingForm').addEventListener('submit', handleSearch);
   </script>
 </body>
+
 </html>
