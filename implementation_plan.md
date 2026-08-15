@@ -1,12 +1,12 @@
 # Implementation Plan - Natures Treasure Website Development
 
-Create a luxury, high-end, responsive website for **Natures Treasure** ("Pure By Nature"), specializing in Agarwood tree management (growing on behalf of clients using chemical-free eco-friendly Thailand drip/mist irrigation technology) and sale of 100% Pure Organic Oud Oil.
+Create a luxury, high-end, responsive website for **Natures Treasure** ("Pure By Nature"), specializing in Agarwood tree management (growing on behalf of clients using chemical-free eco-friendly Thailand Inoculation Technology) and sale of 100% Pure Organic Oud Oil.
 
 ## User Review Required
 
 > [!IMPORTANT]
 > - **Logo**: Using logo provided (`Natures (1).png` / `logo.png`) featuring Deep Forest Green (`#3F523E`), Warm Oud Wood Brown (`#6E4935`), and Soft Cream (`#F9F3EA`).
-> - **Imagery**: Using curated high-resolution Unsplash images for Agarwood plantations, chemical-free irrigation technology, and pure Oud oil artisanal bottles.
+> - **Imagery**: Using curated high-resolution Unsplash images for Agarwood plantations, Thailand Inoculation Technology, and pure Oud oil artisanal bottles.
 
 ## Proposed Changes
 
@@ -23,8 +23,8 @@ Comprehensive single-page / multi-section luxury website containing:
 4. **Agarwood Plantation & Tree Management**:
    - Explanation of client ownership & managed growth services.
    - Interactive 4-step process (Selection -> Eco-Nurturing -> Resin Induction -> Harvest & Profit).
-5. **Thailand Chemical-Free Irrigation Technology**:
-   - Feature spotlight on eco-drip and micro-mist precision irrigation from Thailand.
+5. **Thailand Chemical-Free Inoculation Technology**:
+   - Feature spotlight on eco-friendly Thailand Inoculation Technology from Thailand.
    - 0% harmful chemicals, ensuring pure organic growth & resin induction.
 6. **Pure Oud Oil Shop & Artisanal Collection**:
    - Interactive product grid with filters (All, Pure Essence, Aged Reserve, Attar Blend).
