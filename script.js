@@ -278,29 +278,35 @@ function initRoiCalculator() {
   if (!treeSlider || !yearSlider) return;
 
   function calculateROI() {
-    const trees = parseInt(treeSlider.value, 10);
-    const years = parseInt(yearSlider.value, 10);
+    const trees = parseInt(treeSlider.value, 10) || 1;
+    const years = parseInt(yearSlider.value, 10) || 1;
 
-    treeValueDisplay.textContent = trees.toLocaleString() + ' Trees';
-    yearValueDisplay.textContent = years + ' Years';
+    treeValueDisplay.textContent = trees === 1 ? '1 Tree' : trees.toLocaleString() + ' Trees';
+    yearValueDisplay.textContent = years === 1 ? '1 Year' : years + ' Years';
 
-    // Industry calculation for Agarwood in LKR
-    // Cost per tree allocation & care ~ LKR 120,000
-    // Revenue yield per mature tree ~ LKR 450,000 to 750,000 depending on maturity (years)
-    const baseValuePerTreeLKR = 550000;
-    const maturityMultiplier = 1 + ((years - 5) * 0.20);
-
-    const totalEstimatedValueLKR = Math.round(trees * baseValuePerTreeLKR * maturityMultiplier);
-    const estimatedOilMl = Math.round(trees * (10 + (years - 5) * 2.5));
-    const co2OffsetKg = Math.round(trees * 22 * years);
-    const purchaseCostLKR = trees * 120000;
-    const projectedReturnPercent = Math.round(((totalEstimatedValueLKR - purchaseCostLKR) / purchaseCostLKR) * 100);
+    // Investment & Return Math:
+    // Initial investment per tree: LKR 2,000 (Plant: 1,500 + Labour: 500)
+    // Inoculation: 1,000 holes * 3 grams = 3,000 grams resin per tree
+    // Selling price: LKR 300 / gram -> Gross value per tree = LKR 900,000
+    const initialInvestmentLKR = trees * 2000;
+    const totalResinGrams = trees * 3000;
+    const grossReturnLKR = trees * 900000;
+    const totalCo2Kg = trees * 22 * years;
+    const projectedRoiPercent = Math.round(((grossReturnLKR - initialInvestmentLKR) / initialInvestmentLKR) * 100);
 
     // Format & Render Outputs
-    estimatedValueDisplay.textContent = 'Rs. ' + totalEstimatedValueLKR.toLocaleString();
-    estimatedYieldDisplay.textContent = estimatedOilMl.toLocaleString() + ' ml';
-    co2OffsetDisplay.textContent = (co2OffsetKg / 1000).toFixed(1) + ' Tons';
-    annualReturnDisplay.textContent = projectedReturnPercent + '%';
+    if (estimatedValueDisplay) {
+      estimatedValueDisplay.textContent = 'LKR ' + grossReturnLKR.toLocaleString();
+    }
+    if (estimatedYieldDisplay) {
+      estimatedYieldDisplay.textContent = (totalResinGrams / 1000).toLocaleString() + ' kg (' + totalResinGrams.toLocaleString() + ' g)';
+    }
+    if (co2OffsetDisplay) {
+      co2OffsetDisplay.textContent = (totalCo2Kg / 1000).toFixed(1) + ' Tons';
+    }
+    if (annualReturnDisplay) {
+      annualReturnDisplay.textContent = projectedRoiPercent.toLocaleString() + '%';
+    }
   }
 
   treeSlider.addEventListener('input', calculateROI);
@@ -489,50 +495,89 @@ function showToast(message) {
 }
 
 /* ==========================================================================
-   JOURNEY OF AGARWOOD - EDITORIAL ROADMAP ANIMATIONS & SVG PATH DRAWING
+   JOURNEY OF AGARWOOD - VINE HEAD SYNCHRONIZED LEAF GROWTH
    ========================================================================== */
 function initJourneyRoadmap() {
   const roadmapSection = document.getElementById('journeyRoadmapSection');
   const path = document.getElementById('roadmapSvgLine');
-  if (!roadmapSection) return;
+  if (!roadmapSection || !path) return;
 
-  if (path) {
-    const pathLength = path.getTotalLength();
-    path.style.strokeDasharray = pathLength;
-    path.style.strokeDashoffset = pathLength;
+  const leafSprouts = roadmapSection.querySelectorAll('.vine-leaf-sprout');
+  const pathLength = path.getTotalLength();
+  path.style.strokeDasharray = pathLength;
+  path.style.strokeDashoffset = pathLength;
 
-    function updatePathOnScroll() {
-      const rect = roadmapSection.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      
-      const totalHeight = rect.height;
-      const currentScroll = windowHeight - rect.top;
-      let progress = currentScroll / (totalHeight + windowHeight / 3);
-      
-      progress = Math.max(0, Math.min(1, progress));
-      
-      const drawLength = pathLength * progress;
-      path.style.strokeDashoffset = pathLength - drawLength;
-    }
-
-    window.addEventListener('scroll', updatePathOnScroll, { passive: true });
-    updatePathOnScroll();
-    // Recalculate on resize or orientation change to keep progress accurate on mobile
-    window.addEventListener('resize', updatePathOnScroll, { passive: true });
-    window.addEventListener('orientationchange', updatePathOnScroll, { passive: true });
+  // Measure and cache the exact distance along the vine path for every leaf sprout
+  const sproutDistances = [];
+  const sampleSteps = 200;
+  const sampledPoints = [];
+  for (let i = 0; i <= sampleSteps; i++) {
+    const len = (i / sampleSteps) * pathLength;
+    const pt = path.getPointAtLength(len);
+    sampledPoints.push({ len, x: pt.x, y: pt.y });
   }
 
-  // Scroll reveal observer for editorial stages & final product destination
-  const stages = roadmapSection.querySelectorAll('.editorial-stage, .editorial-final-destination');
+  leafSprouts.forEach((sprout) => {
+    const useEl = sprout.querySelector('use');
+    if (!useEl) return;
+    const lx = parseFloat(useEl.getAttribute('x') || 0);
+    const ly = parseFloat(useEl.getAttribute('y') || 0);
+
+    // Find the closest point on the SVG path for this leaf
+    let minD = Infinity;
+    let closestLen = 0;
+    for (let j = 0; j < sampledPoints.length; j++) {
+      const sp = sampledPoints[j];
+      const dx = sp.x - lx;
+      const dy = sp.y - ly;
+      const d = dx * dx + dy * dy;
+      if (d < minD) {
+        minD = d;
+        closestLen = sp.len;
+      }
+    }
+    sproutDistances.push({ element: sprout, targetLength: closestLen });
+  });
+
+  function updateVineAndLeavesOnScroll() {
+    const rect = roadmapSection.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    const totalHeight = rect.height;
+    // Map scroll so vine starts drawing near top of section and finishes at bottom
+    const currentScroll = windowHeight * 0.75 - rect.top;
+    let progress = currentScroll / totalHeight;
+    progress = Math.max(0, Math.min(1, progress));
+
+    const currentDrawnLength = pathLength * progress;
+    path.style.strokeDashoffset = pathLength - currentDrawnLength;
+
+    // Reveal leaves ONLY when the vine line reaches them, hide them if scrolled back up
+    sproutDistances.forEach((item) => {
+      if (currentDrawnLength >= item.targetLength - 10) {
+        item.element.classList.add('sprouted');
+      } else {
+        item.element.classList.remove('sprouted');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateVineAndLeavesOnScroll, { passive: true });
+  updateVineAndLeavesOnScroll();
+  window.addEventListener('resize', updateVineAndLeavesOnScroll, { passive: true });
+  window.addEventListener('orientationchange', updateVineAndLeavesOnScroll, { passive: true });
+
+  // Scroll reveal observer for content cards
+  const stages = roadmapSection.querySelectorAll('.editorial-stage');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('reveal');
       }
     });
-  }, { 
-    threshold: 0.15, 
-    rootMargin: '0px 0px -50px 0px' 
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -40px 0px'
   });
 
   stages.forEach(stage => observer.observe(stage));

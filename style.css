@@ -2172,24 +2172,15 @@ textarea.form-control {
 
 .editorial-journey-section {
   position: relative;
-  background-color: #F7F5EF;
-  color: #3B2F2A;
+  background: linear-gradient(180deg, var(--cream-bg) 0%, rgba(242, 234, 223, 0.5) 45%, var(--cream-bg) 100%);
+  color: var(--text-main);
   padding: 9rem 0 10rem;
   overflow: hidden;
-  font-family: 'Poppins', sans-serif;
-}
-
-/* Prevent collapsed margins or inline SVG gaps that can show a thin white line */
-.editorial-journey-section {
-  overflow: auto;
-}
-
-.roadmap-svg-path {
-  display: block;
+  font-family: var(--font-body);
 }
 
 .editorial-container {
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
   padding: 0 2rem;
   position: relative;
@@ -2197,40 +2188,39 @@ textarea.form-control {
 
 .editorial-header {
   text-align: center;
-  margin-bottom: 7rem;
+  margin-bottom: 7.5rem;
   position: relative;
   z-index: 5;
 }
 
 .editorial-subtitle {
-  font-family: 'Poppins', sans-serif;
   font-size: 0.85rem;
   font-weight: 700;
-  letter-spacing: 3px;
-  color: #B68D40;
+  letter-spacing: 3.5px;
+  color: var(--accent-gold);
   text-transform: uppercase;
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
 }
 
 .editorial-title {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 3.6rem;
-  color: #3B2F2A;
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  color: var(--primary-green-dark);
   margin-bottom: 1.25rem;
   font-weight: 700;
   line-height: 1.15;
 }
 
 .editorial-intro {
-  font-size: 1.1rem;
-  color: #64534B;
-  max-width: 650px;
+  font-size: 1.12rem;
+  color: var(--text-muted);
+  max-width: 680px;
   margin: 0 auto;
   line-height: 1.75;
 }
 
-/* --- SVG WINDING ROAD PATH --- */
+/* --- THE LIVING VINE PATH (THE ROADMAP SKELETON) --- */
 .editorial-roadmap-wrapper {
   position: relative;
   width: 100%;
@@ -2243,22 +2233,51 @@ textarea.form-control {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 2;
+  z-index: 1;
   overflow: visible;
+  filter: drop-shadow(0 4px 12px rgba(45, 64, 44, 0.16));
 }
 
 #roadmapSvgLine {
-  stroke-dasharray: 3000;
-  stroke-dashoffset: 3000;
+  stroke-dasharray: 4500;
+  stroke-dashoffset: 4500;
   transition: stroke-dashoffset 0.08s linear;
 }
 
-/* --- STAGES --- */
+/* Botanical Leaf Sprout Micro-animations */
+.vine-leaf-sprout {
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: center;
+  transform-box: fill-box;
+  transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1), transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+
+.vine-leaf-sprout.sprouted {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@keyframes subtleLeafBreeze {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(4deg) translateY(-1px);
+  }
+}
+
+.vine-leaf-sprout.sprouted use {
+  animation: subtleLeafBreeze 7s ease-in-out infinite alternate;
+}
+
+/* --- STAGES (ORGANICALLY CONNECTED MILESTONES) --- */
 .editorial-stage {
   display: flex;
   align-items: center;
   gap: 5rem;
-  margin-bottom: 9rem;
+  margin-bottom: 9.5rem;
   position: relative;
   z-index: 3;
 }
@@ -2271,6 +2290,12 @@ textarea.form-control {
   flex-direction: row-reverse;
 }
 
+.editorial-stage.stage-center {
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
 .editorial-image-box {
   flex: 1.1;
   position: relative;
@@ -2278,10 +2303,10 @@ textarea.form-control {
 
 .editorial-content-box {
   flex: 0.9;
-  max-width: 460px;
+  max-width: 450px;
   opacity: 0;
-  transform: translateY(45px);
-  transition: opacity 0.85s cubic-bezier(0.25, 1, 0.5, 1), transform 0.85s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: translateY(35px);
+  transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1), transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .editorial-stage.reveal .editorial-content-box {
@@ -2290,27 +2315,27 @@ textarea.form-control {
 }
 
 .stage-num-tag {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-heading);
   font-size: 1.6rem;
   font-weight: 700;
-  color: #B68D40;
+  color: var(--accent-gold);
   display: inline-block;
-  margin-bottom: 0.6rem;
-  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1.5px;
 }
 
 .stage-heading {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 2.4rem;
-  color: #3B2F2A;
+  font-family: var(--font-heading);
+  font-size: clamp(1.85rem, 3.2vw, 2.45rem);
+  color: var(--primary-green-dark);
   margin-bottom: 1.1rem;
   font-weight: 700;
   line-height: 1.2;
 }
 
 .stage-desc {
-  font-size: 1rem;
-  color: #5A4A42;
+  font-size: 1.02rem;
+  color: var(--text-muted);
   line-height: 1.75;
   margin-bottom: 1.75rem;
 }
@@ -2318,18 +2343,18 @@ textarea.form-control {
 .editorial-learn-link {
   font-size: 0.85rem;
   font-weight: 700;
-  color: #B68D40;
+  color: var(--accent-gold);
   text-decoration: none;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition: var(--transition);
 }
 
 .editorial-learn-link:hover {
-  color: #3B2F2A;
+  color: var(--primary-green-dark);
   transform: translateX(6px);
 }
 
@@ -2338,13 +2363,15 @@ textarea.form-control {
   position: relative;
   width: 100%;
   max-width: 560px;
-  border-radius: 24px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 52%, rgba(0, 0, 0, 0) 100%);
-  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 52%, rgba(0, 0, 0, 0) 100%);
+  box-shadow: 0 16px 40px rgba(45, 64, 44, 0.12);
+  border: 4px solid rgba(255, 255, 255, 0.7);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 68%, rgba(0, 0, 0, 0.02) 100%);
+  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 68%, rgba(0, 0, 0, 0.02) 100%);
   opacity: 0;
-  transform: scale(0.94) translateY(35px);
-  transition: opacity 0.85s cubic-bezier(0.25, 1, 0.5, 1), transform 0.85s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: scale(0.95) translateY(30px);
+  transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1), transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .editorial-stage.reveal .feathered-image-wrap {
@@ -2354,44 +2381,41 @@ textarea.form-control {
 
 .feathered-image-wrap img {
   width: 100%;
-  height: 370px;
+  height: 360px;
   object-fit: cover;
   display: block;
-  transition: transform 0.8s ease;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .feathered-image-wrap:hover img {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 /* --- FINAL DESTINATION --- */
 .editorial-final-destination {
   text-align: center;
-  margin-top: 7rem;
   position: relative;
   z-index: 4;
   display: flex;
   flex-direction: column;
   align-items: center;
   opacity: 0;
-  transform: translateY(45px);
-  transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1), transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: translateY(40px);
+  transition: opacity 0.95s cubic-bezier(0.25, 1, 0.5, 1), transform 0.95s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.editorial-final-destination.reveal {
+.editorial-stage.reveal .editorial-final-destination {
   opacity: 1;
   transform: translateY(0);
 }
 
 .final-product-image {
   max-width: 680px;
-  margin: 0 auto 3rem;
-  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 55%, rgba(0, 0, 0, 0) 100%);
-  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 55%, rgba(0, 0, 0, 0) 100%);
+  margin: 0 auto 2.5rem;
 }
 
 .final-product-image img {
-  height: 420px;
+  height: 400px;
 }
 
 .final-glow-ring {
@@ -2399,12 +2423,12 @@ textarea.form-control {
   top: 5%;
   left: 50%;
   transform: translateX(-50%);
-  width: 500px;
-  height: 320px;
-  background: radial-gradient(ellipse at center, rgba(182, 141, 64, 0.28) 0%, transparent 70%);
+  width: 520px;
+  height: 340px;
+  background: radial-gradient(ellipse at center, rgba(201, 150, 72, 0.25) 0%, transparent 70%);
   pointer-events: none;
   z-index: -1;
-  animation: pulseGlow 4s ease-in-out infinite alternate;
+  animation: pulseGlow 4.5s ease-in-out infinite alternate;
 }
 
 @keyframes pulseGlow {
@@ -2412,10 +2436,9 @@ textarea.form-control {
     opacity: 0.45;
     transform: translateX(-50%) scale(0.92);
   }
-
   100% {
     opacity: 1;
-    transform: translateX(-50%) scale(1.1);
+    transform: translateX(-50%) scale(1.08);
   }
 }
 
@@ -2428,23 +2451,23 @@ textarea.form-control {
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 3px;
-  color: #B68D40;
+  color: var(--accent-gold);
   text-transform: uppercase;
   display: block;
   margin-bottom: 0.85rem;
 }
 
 .final-heading {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 3rem;
-  color: #3B2F2A;
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 4.5vw, 3rem);
+  color: var(--primary-green-dark);
   margin-bottom: 1.1rem;
   font-weight: 700;
 }
 
 .final-desc {
   font-size: 1.08rem;
-  color: #5A4A42;
+  color: var(--text-muted);
   margin-bottom: 2.25rem;
   line-height: 1.7;
 }
@@ -2452,25 +2475,21 @@ textarea.form-control {
 /* --- RESPONSIVE ADJUSTMENTS --- */
 @media (max-width: 1024px) {
   .editorial-stage {
-    gap: 3rem;
+    gap: 3.5rem;
+    margin-bottom: 7.5rem;
   }
-
-  .editorial-title {
-    font-size: 3rem;
-  }
-
-  .stage-heading {
-    font-size: 2rem;
-  }
-
   .feathered-image-wrap img {
-    height: 280px;
+    height: 300px;
   }
 }
 
 @media (max-width: 768px) {
   .editorial-journey-section {
-    padding: 6rem 0;
+    padding: 5rem 0;
+  }
+
+  .editorial-header {
+    margin-bottom: 4.5rem;
   }
 
   .editorial-stage,
@@ -2490,49 +2509,28 @@ textarea.form-control {
   }
 
   .feathered-image-wrap img {
-    height: 240px;
+    height: 250px;
   }
 
   .roadmap-svg-path {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: none;
-    transform-origin: center top;
     z-index: 0;
-    pointer-events: none;
-    overflow: visible;
+    opacity: 0.9;
   }
 
-  /* Prevent horizontal page overflow caused by absolute SVG or wide content */
   .editorial-journey-section,
   .editorial-roadmap-wrapper {
     overflow-x: hidden;
   }
+}
 
-  /* Extra safety: limit page horizontal overflow on narrow screens */
-  html,
-  body {
-    max-width: 100%;
-    overflow-x: hidden;
+@media (prefers-reduced-motion: reduce) {
+  .vine-leaf-sprout use {
+    animation: none;
   }
-
-  /* Make stroke responsive across small phones -> tablets using clamp */
-  .roadmap-svg-path path {
-    stroke: var(--accent-gold);
-    stroke-opacity: 0.95;
-    stroke-width: clamp(0.6px, 1.3vw, 1.6px) !important;
-  }
-
-  .editorial-title {
-    font-size: 2.4rem;
-  }
-
-  .final-heading {
-    font-size: 2.2rem;
+  .editorial-content-box,
+  .feathered-image-wrap,
+  .editorial-final-destination {
+    transition: none;
   }
 }
 
@@ -2597,4 +2595,5 @@ textarea.form-control {
   }
 }
 
+/* End of motion system */
 /* End of motion system */

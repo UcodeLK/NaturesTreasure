@@ -77,55 +77,56 @@
     <div class="container">
       <div class="calculator-box">
         <div class="calc-inputs">
-          <h3>Tree Management Parameters</h3>
+          <h3>Tree Investment Parameters</h3>
 
           <div class="slider-group">
             <div class="slider-header">
-              <span class="slider-label">Number of Managed Trees</span>
-              <span class="slider-value" id="treeValueDisplay">50 Trees</span>
+              <span class="slider-label">Number of Agarwood Trees</span>
+              <span class="slider-value" id="treeValueDisplay">1 Tree</span>
             </div>
-            <input type="range" id="treeSlider" min="10" max="500" step="10" value="50">
+            <input type="range" id="treeSlider" min="1" max="500" step="1" value="1">
           </div>
 
           <div class="slider-group">
             <div class="slider-header">
               <span class="slider-label">Growth & Harvest Cycle</span>
-              <span class="slider-value" id="yearValueDisplay">7 Years</span>
+              <span class="slider-value" id="yearValueDisplay">1 Year</span>
             </div>
-            <input type="range" id="yearSlider" min="5" max="10" step="1" value="7">
+            <input type="range" id="yearSlider" min="1" max="10" step="1" value="1">
           </div>
 
           <div
             style="background: rgba(110,73,53,0.06); padding: 1.25rem; border-radius: var(--radius-sm); font-size: 0.88rem; color: var(--text-muted);">
-            <i class="fas fa-info-circle" style="color: var(--earth-brown);"></i> Projections are estimated based on
-            historical Agarwood heartwood yield, current market prices for environmental pure Oud oil, and
-            Thailand Inoculation Technology growth rates.
+            <i class="fas fa-info-circle" style="color: var(--earth-brown);"></i> <strong>Investment Formula:</strong><br>
+            • Initial Investment per Tree: <strong>LKR 2,000</strong> (Plant: LKR 1,500 + Labour: LKR 500)<br>
+            • Inoculation: <strong>1,000 holes</strong> × <strong>3g resin</strong> = <strong>3,000g (3 kg)</strong> per tree<br>
+            • Selling Price: <strong>LKR 300 / gram</strong> → Gross Return: <strong>LKR 900,000</strong> per tree
           </div>
         </div>
 
         <div class="calc-results">
           <div class="results-header">
             <h2>Estimated Yield & Returns (LKR)</h2>
-            <p>Based on selected trees & growth cycle</p>
+            <p>Based on minimum assumed yield of 3g / hole</p>
           </div>
 
           <div class="main-result">
-            <div class="main-result-label">Estimated Total Return Value</div>
-            <div class="main-result-val" id="estimatedValueDisplay">Rs. 38,500,000</div>
+            <div class="main-result-label">Estimated Gross Return</div>
+            <div class="main-result-val" id="estimatedValueDisplay">LKR 900,000</div>
           </div>
 
           <div class="metric-grid">
             <div class="metric-card">
-              <span>Pure Oil Yield</span>
-              <strong id="estimatedYieldDisplay">750 ml</strong>
+              <span>Estimated Resin Yield</span>
+              <strong id="estimatedYieldDisplay">3 kg (3,000 g)</strong>
             </div>
             <div class="metric-card">
               <span>CO2 Offset Impact</span>
-              <strong id="co2OffsetDisplay">7.7 Tons</strong>
+              <strong id="co2OffsetDisplay">0.02 Tons</strong>
             </div>
             <div class="metric-card">
-              <span>Estimated ROI %</span>
-              <strong id="annualReturnDisplay">542%</strong>
+              <span>Estimated Gross ROI %</span>
+              <strong id="annualReturnDisplay">44,900%</strong>
             </div>
             <div class="metric-card">
               <span>Care Method</span>
@@ -138,6 +139,39 @@
             <i class="fas fa-paper-plane"></i> Reserve Managed Trees Now
           </button>
         </div>
+      </div>
+
+      <!-- INVESTMENT BREAKDOWN & COMPARISON EXAMPLES -->
+      <div style="margin-top: 3.5rem; background: var(--card-bg); border-radius: var(--radius-lg); padding: 2.5rem; border: 1px solid rgba(110,73,53,0.1); box-shadow: var(--shadow-sm);">
+        <h3 style="font-family: var(--font-heading); color: var(--primary-green-dark); font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">
+          Agarwood Investment Breakdown & Projections
+        </h3>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+          <div style="background: rgba(45,64,44,0.04); padding: 1.8rem; border-radius: var(--radius-md); border-left: 4px solid var(--primary-green);">
+            <h4 style="color: var(--primary-green-dark); margin-bottom: 1rem; font-size: 1.25rem;"><i class="fas fa-tree"></i> If You Plant 1 Tree</h4>
+            <ul style="list-style: none; padding: 0; line-height: 2;">
+              <li><strong>Initial Investment:</strong> LKR 2,000</li>
+              <li><strong>Estimated Resin Production:</strong> 3,000 grams (3 kg)</li>
+              <li><strong>Estimated Gross Resin Value:</strong> LKR 900,000</li>
+              <li><strong>Estimated Gross Return:</strong> <span style="color: var(--accent-gold); font-weight: 700;">LKR 900,000</span></li>
+            </ul>
+          </div>
+
+          <div style="background: rgba(201,150,72,0.06); padding: 1.8rem; border-radius: var(--radius-md); border-left: 4px solid var(--accent-gold);">
+            <h4 style="color: var(--earth-brown); margin-bottom: 1rem; font-size: 1.25rem;"><i class="fas fa-forest"></i> If You Plant 100 Trees</h4>
+            <ul style="list-style: none; padding: 0; line-height: 2;">
+              <li><strong>Initial Investment:</strong> 100 × LKR 2,000 = LKR 200,000</li>
+              <li><strong>Estimated Resin Production:</strong> 100 × 3,000g = 300,000g (300 kg)</li>
+              <li><strong>Estimated Gross Resin Value:</strong> 300,000g × LKR 300 = LKR 90,000,000</li>
+              <li><strong>Estimated Gross Return:</strong> <span style="color: var(--accent-gold); font-weight: 700;">LKR 90 Million</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; line-height: 1.6; max-width: 900px; margin: 0 auto;">
+          <em>*These figures are illustrative estimates based on a minimum assumed yield of 3 grams of resin per inoculation hole (1,000 holes per tree) and a resin selling price of LKR 300 per gram. Actual yields and commercial returns may vary based on tree age, environmental conditions, and market rates at time of harvest.</em>
+        </p>
       </div>
     </div>
   </section>
