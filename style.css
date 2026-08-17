@@ -1588,6 +1588,16 @@ textarea.form-control {
   font-size: 0.88rem;
 }
 
+.footer-bottom a {
+  color: rgba(244, 239, 230, 0.6);
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.footer-bottom a:hover {
+  color: var(--accent-gold-light);
+}
+
 /* Responsive Media Queries */
 @media (max-width: 1024px) {
 
