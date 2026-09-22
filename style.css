@@ -1356,6 +1356,7 @@ input[type="range"] {
   justify-content: space-between;
 }
 
+.contact-info-box h2,
 .contact-info-box h3 {
   color: var(--text-light);
   font-size: 2.2rem;
@@ -1387,18 +1388,21 @@ input[type="range"] {
   flex-shrink: 0;
 }
 
+.contact-item h4,
 .contact-item h5 {
-  color: var(--accent-gold-light);
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 0.2rem;
+  color: #FFFFFF;
+  font-size: 1.05rem;
+  margin-bottom: 0.25rem;
 }
 
 .contact-item p {
-  color: var(--text-light);
+  color: #FFFFFF;
   margin: 0;
   font-size: 1rem;
+}
+
+.contact-item a {
+  color: #FFFFFF;
 }
 
 .contact-form-container {
